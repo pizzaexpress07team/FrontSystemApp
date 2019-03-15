@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation_menu"
+            app:startDestination="@id/menuShowFragment">
+
+    <fragment android:id="@+id/menuShowFragment"
+              android:name="com.express.pizza.pdq.fragment.MenuShowFragment"
+              android:label="MenuShowFragment"
+              tools:layout="@layout/menu_show_fragment"/>
+</navigation>

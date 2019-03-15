@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryDark">#FFA000</color>
+    <color name="colorAccent">#FFB630</color>
+
+    <color name="defaultBackground">#fafafa</color>
+    <!--backup-->
+    <color name="colorLogo">#FFB630</color>
+
+    <color name="welcomeSubtitle">#868686</color>
+    <color name="welcomeBottom">#FFFFFF</color>
+    <color name="iconRipple">#28FFB630</color>
+
+    <color name="outline">#FFB74D</color>
+
+    <color name="bottomNavTextInactive">#C0000000</color>
+    <color name="toolbarTitle">#868686</color>
+
+    <color name="transparent">#00FFFFFF</color>
 </resources>
