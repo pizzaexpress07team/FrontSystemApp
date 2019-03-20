@@ -38,6 +38,7 @@ class WelcomeFirstFragment : Fragment(), View.OnClickListener{
     private fun setOnClickListener() {
         skipBtn.setOnClickListener(this)
         signUpBtn.setOnClickListener(this)
+        signInBtn.setOnClickListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -54,6 +55,9 @@ class WelcomeFirstFragment : Fragment(), View.OnClickListener{
             }
             R.id.signUpBtn -> {
                 Navigation.findNavController(p0).navigate(R.id.actionFirstToSignUpPhoneFragment)
+            }
+            R.id.signInBtn -> {
+                Navigation.findNavController(p0).navigate(R.id.actionFirstToSignInSelectFragment)
             }
         }
     }

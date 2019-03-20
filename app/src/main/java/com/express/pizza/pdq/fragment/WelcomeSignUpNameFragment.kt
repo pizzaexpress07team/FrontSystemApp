@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 
@@ -56,8 +57,24 @@ class WelcomeSignUpNameFragment : Fragment(), View.OnClickListener {
                 Navigation.findNavController(p0).navigate(R.id.actionNameToSignUpPhoneFragment)
             }
             R.id.signUpOkBtn -> {
-                startActivity(Intent(activity, MainActivity::class.java))
-                activity?.finish()
+                when {
+                    nameEditText.length() < 6 -> {
+                        Toast.makeText(activity, "用户名至少为6位，请确认", Toast.LENGTH_LONG).show()
+                        return
+                    }
+                    passwordEditText.length() < 8 -> {
+                        Toast.makeText(activity, "密码至少为8位，请确认", Toast.LENGTH_LONG).show()
+                        return
+                    }
+                    passwordAgainEditText.text != passwordEditText.text -> {
+                        Toast.makeText(activity, "两次密码输入不一致，请确认", Toast.LENGTH_LONG).show()
+                        return
+                    }
+                    else -> {
+                        startActivity(Intent(activity, MainActivity::class.java))
+                        activity?.finish()
+                    }
+                }
             }
         }
     }

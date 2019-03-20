@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -43,6 +44,7 @@ class WelcomeSignUpPhoneFragment : Fragment(), View.OnClickListener {
         }
         switchToSignUpNameBtn.setOnClickListener(this)
         signUpOkBtn.setOnClickListener(this)
+        sendCodeBtn.setOnClickListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -57,8 +59,30 @@ class WelcomeSignUpPhoneFragment : Fragment(), View.OnClickListener {
                 Navigation.findNavController(p0).navigate(R.id.actionPhoneToSignUpNameFragment)
             }
             R.id.signUpOkBtn -> {
-                startActivity(Intent(activity, MainActivity::class.java))
-                activity?.finish()
+                when {
+                    phoneEditText.length() < 11 -> {
+                        Toast.makeText(activity, "手机号必须为11位", Toast.LENGTH_LONG).show()
+                        return
+                    }
+                    codeEditText.length() != 4 -> {
+                        Toast.makeText(activity, "验证码为4位数字，请确认", Toast.LENGTH_LONG).show()
+                        return
+                    }
+                    passwordEditText.length() < 8 -> {
+                        Toast.makeText(activity, "密码至少为8位，请确认", Toast.LENGTH_LONG).show()
+                        return
+                    }
+                    else -> {
+                        startActivity(Intent(activity, MainActivity::class.java))
+                        activity?.finish()
+                    }
+                }
+            }
+            R.id.sendCodeBtn -> {
+                if (phoneEditText.length() < 11) {
+                    Toast.makeText(activity, "手机号必须为11位，请确认", Toast.LENGTH_LONG).show()
+                    return
+                }
             }
         }
     }

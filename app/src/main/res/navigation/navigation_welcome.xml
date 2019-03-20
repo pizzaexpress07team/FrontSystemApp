@@ -12,6 +12,11 @@
                 app:destination="@id/welcomeSignUpPhoneFragment"
                 app:enterAnim="@anim/activity_open_enter"
                 app:exitAnim="@anim/fragment_open_exit"
+                app:popExitAnim="@anim/fragment_close_exit"/>
+        <action android:id="@+id/actionFirstToSignInSelectFragment"
+                app:destination="@id/welcomeSignInSelectFragment"
+                app:exitAnim="@anim/fragment_open_exit"
+                app:enterAnim="@anim/activity_open_enter"
                 app:popExitAnim="@anim/activity_close_exit"/>
     </fragment>
     <fragment android:id="@+id/welcomeSignUpPhoneFragment"
@@ -20,11 +25,11 @@
               tools:layout="@layout/welcome_sign_up_phone_fragment">
         <action android:id="@+id/actionPhoneToSignUpNameFragment"
                 app:destination="@id/welcomeSignUpNameFragment"
-                app:popUpTo="@+id/welcomeSignUpNameFragment"
+                app:popUpTo="@+id/welcomeFirstFragment"
                 app:enterAnim="@anim/fragment_open_enter"
                 app:exitAnim="@anim/fragment_open_exit"
                 app:popExitAnim="@anim/fragment_close_exit"
-                app:popUpToInclusive="true"/>
+        />
     </fragment>
     <fragment android:id="@+id/welcomeSignUpNameFragment"
               android:name="com.express.pizza.pdq.fragment.WelcomeSignUpNameFragment"
@@ -38,4 +43,36 @@
                 app:popExitAnim="@anim/fragment_close_exit"
         />
     </fragment>
+    <fragment android:id="@+id/welcomeSignInSelectFragment"
+              android:name="com.express.pizza.pdq.fragment.WelcomeSignInSelectFragment"
+              android:label="WelcomeSignInSelectFragment"
+              tools:layout="@layout/welcome_sign_in_select_fragment">
+        <action android:id="@+id/actionSignInSelectToSignInNameFragment"
+                app:destination="@id/welcomeSignInNameFragment"
+                app:enterAnim="@anim/activity_open_enter"
+                app:popExitAnim="@anim/activity_close_exit"
+                app:exitAnim="@anim/fragment_open_exit"/>
+        <action android:id="@+id/actionSignInSelectToSignInCodeFragment"
+                app:destination="@id/welcomeSignInCodeFragment"
+                app:enterAnim="@anim/activity_open_enter"
+                app:popExitAnim="@anim/activity_close_exit"
+                app:exitAnim="@anim/fragment_open_exit"/>
+        <action android:id="@+id/actionSignInSelectToSignInPhoneFragment"
+                app:destination="@id/welcomeSignInPhoneFragment"
+                app:enterAnim="@anim/activity_open_enter"
+                app:popExitAnim="@anim/activity_close_exit"
+                app:exitAnim="@anim/fragment_open_exit"/>
+    </fragment>
+    <fragment android:id="@+id/welcomeSignInNameFragment"
+              android:name="com.express.pizza.pdq.fragment.WelcomeSignInNameFragment"
+              android:label="WelcomeSignInNameFragment"
+              tools:layout="@layout/welcome_sign_in_name_fragment"/>
+    <fragment android:id="@+id/welcomeSignInCodeFragment"
+              android:name="com.express.pizza.pdq.fragment.WelcomeSignInCodeFragment"
+              android:label="welcome_sign_in_code_fragment"
+              tools:layout="@layout/welcome_sign_in_code_fragment"/>
+    <fragment android:id="@+id/welcomeSignInPhoneFragment"
+              android:name="com.express.pizza.pdq.fragment.WelcomeSignInPhoneFragment"
+              android:label="welcome_sign_in_phone_fragment"
+              tools:layout="@layout/welcome_sign_in_phone_fragment"/>
 </navigation>

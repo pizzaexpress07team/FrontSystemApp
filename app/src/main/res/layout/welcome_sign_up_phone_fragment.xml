@@ -56,11 +56,12 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/phoneEditText"
                         android:singleLine="true"
-                        android:inputType="phone"
                         android:typeface="monospace"
                         android:paddingEnd="168dp"
                         android:paddingStart="12dp"
-                        android:maxLength="11"/>
+                        android:maxLength="11"
+                        android:inputType="number"
+                        android:digits="0123456789"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
@@ -84,7 +85,7 @@
                         android:singleLine="true"
                         android:inputType="number"
                         android:typeface="monospace"
-                        android:maxLength="6"/>
+                        android:maxLength="4"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
