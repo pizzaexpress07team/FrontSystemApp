@@ -11,47 +11,147 @@
             android:layout_width="match_parent"
             android:background="@color/transparent">
         <androidx.appcompat.widget.Toolbar
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="48dp"
                 android:layout_width="match_parent"
                 app:layout_scrollFlags="scroll|snap"
                 app:title="Pizza Express"
                 style="@style/Toolbar"
                 app:logo="@drawable/logo_toolbar"
                 app:titleMarginStart="28dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                android:background="@android:color/white">
+
+            <TextView
+                    android:text="今日推荐"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="12dp"
+                    android:id="@+id/textView4"
+                    android:textAppearance="@style/TextAppearance.Toolbar.Subtitle"
+                    android:textStyle="bold"/>
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="8dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/guideline8"
+                            app:layout_constraintGuide_percent="0.6"/>
+                    <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/pizza_item"
+                            android:id="@+id/imageView"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="推荐比萨图片"/>
+                    <TextView
+                            android:text="超级至尊比萨"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/recommend_name"
+                            app:layout_constraintStart_toEndOf="@+id/imageView"
+                            android:layout_marginStart="16dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="16dp"
+                            android:textAppearance="@style/TextAppearance.Pizza.Name"
+                            android:textSize="24sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginEnd="16dp"/>
+                    <TextView
+                            android:text="满满丰盛馅料\n口口令人满足"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/recommend_description"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/recommend_name"
+                            android:layout_marginBottom="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintVertical_bias="1.0"
+                            android:layout_marginStart="16dp"
+                            app:layout_constraintStart_toStartOf="@+id/guideline8"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 app:tabMode="scrollable"
                 style="@style/TabLayout"
                 app:tabIconTint="@drawable/tint_color_icon"
-        >
+                app:tabIndicatorFullWidth="false">
             <com.google.android.material.tabs.TabItem
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
                     android:layout_width="wrap_content"
                     android:text="比萨"
             />
             <com.google.android.material.tabs.TabItem
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
                     android:layout_width="wrap_content"
                     android:text="意面"
             />
             <com.google.android.material.tabs.TabItem
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
                     android:layout_width="wrap_content"
                     android:text="小食"
+            />
+            <com.google.android.material.tabs.TabItem
+                    android:layout_height="32dp"
+                    android:layout_width="wrap_content"
+                    android:text="饮品"
             />
         </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:scrollbars="vertical"
+            android:scrollbarFadeDuration="200"
+            android:fadeScrollbars="true"
+            android:overScrollMode="always"
+    >
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".fragment.MenuShowFragment"
-                android:id="@+id/coordinatorLayout"/>
+                tools:listitem="@layout/item_pizza_layout"
+                android:id="@+id/menuRecyclerView"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:overScrollMode="always"
+                tools:spanCount="2"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:paddingBottom="72dp"
+                android:paddingEnd="6dp"
+                android:paddingStart="6dp"
+                android:paddingTop="6dp"/>
     </androidx.core.widget.NestedScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

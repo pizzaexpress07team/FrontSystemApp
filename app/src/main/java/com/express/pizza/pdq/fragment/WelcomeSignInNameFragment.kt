@@ -26,7 +26,7 @@ class WelcomeSignInNameFragment : Fragment() {
 
     companion object {
         fun newInstance() = WelcomeSignInNameFragment()
-        val URL_LOGIN = "http://3.86.76.105:8080/user/login"
+        const val URL_LOGIN = "http://3.86.76.105:8080/user/login"
     }
 
     private lateinit var viewModel: WelcomeSignInNameViewModel
@@ -70,7 +70,6 @@ class WelcomeSignInNameFragment : Fragment() {
                     .execute(object : StringCallback() {
                         override fun onResponse(response: String?, id: Int) {
                             val jsonObject = Gson().fromJson(response, JsonObject::class.java).asJsonObject
-                            Log.d("Menu--", "onResponse: " + jsonObject.get("errorCode").toString().toInt())
                             when (jsonObject.get("errorCode").asInt) {
                                 0 -> {
                                     Toast.makeText(
