@@ -49,7 +49,8 @@
                     android:layout_marginTop="32dp"
                     app:icon="@drawable/ic_person"
                     android:textAlignment="center"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    app:strokeColor="@color/colorPrimary"/>
             <com.google.android.material.button.MaterialButton
                     android:text="手机验证码登录"
                     android:layout_width="0dp"
@@ -65,7 +66,8 @@
                     android:textAlignment="center"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintTop_toBottomOf="@+id/signInByNameBtn"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    app:strokeColor="@color/colorPrimary"/>
             <com.google.android.material.button.MaterialButton
                     android:text="手机密码登录"
                     android:layout_width="0dp"
@@ -83,7 +85,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/signInByCodeBtn"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="32dp"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    app:strokeColor="@color/colorPrimary"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

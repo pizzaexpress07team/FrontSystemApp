@@ -48,7 +48,8 @@
                     app:boxStrokeColor="@color/outline"
                     android:layout_marginTop="24dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:counterMaxLength="16">
+                    app:counterMaxLength="16"
+                    app:errorEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -94,7 +95,7 @@
                     android:text="确定"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/signUpOkBtn"
+                    android:id="@+id/signOkBtn"
                     style="@style/Button.Icon"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -102,6 +103,17 @@
                     android:layout_marginBottom="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout"
                     android:layout_marginTop="24dp"/>
+            <ProgressBar
+                    android:layout_height="32dp"
+                    android:id="@+id/okProgressBar"
+                    app:layout_constraintBottom_toBottomOf="@+id/signOkBtn"
+                    app:layout_constraintTop_toTopOf="@+id/signOkBtn"
+                    app:layout_constraintStart_toStartOf="@+id/passwordInputLayout"
+                    android:layout_width="32dp"
+                    android:elevation="2dp"
+                    android:visibility="gone"
+                    android:indeterminate="true"
+                    android:layout_marginStart="4dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

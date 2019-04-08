@@ -17,5 +17,7 @@
     <color name="bottomNavTextInactive">#C0000000</color>
     <color name="toolbarTitle">#868686</color>
 
+    <color name="itemPizza">#1A1A1A</color>
+
     <color name="transparent">#00FFFFFF</color>
 </resources>

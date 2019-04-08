@@ -43,7 +43,7 @@ class WelcomeSignUpPhoneFragment : Fragment(), View.OnClickListener {
             it.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
         switchToSignUpNameBtn.setOnClickListener(this)
-        signUpOkBtn.setOnClickListener(this)
+        signOkBtn.setOnClickListener(this)
         sendCodeBtn.setOnClickListener(this)
     }
 
@@ -58,7 +58,7 @@ class WelcomeSignUpPhoneFragment : Fragment(), View.OnClickListener {
             R.id.switchToSignUpNameBtn -> {
                 Navigation.findNavController(p0).navigate(R.id.actionPhoneToSignUpNameFragment)
             }
-            R.id.signUpOkBtn -> {
+            R.id.signOkBtn -> {
                 when {
                     phoneEditText.length() < 11 -> {
                         Toast.makeText(activity, "手机号必须为11位", Toast.LENGTH_LONG).show()

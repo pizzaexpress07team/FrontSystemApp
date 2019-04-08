@@ -42,7 +42,7 @@ class WelcomeSignUpNameFragment : Fragment(), View.OnClickListener {
             it.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
         switchToSignUpPhoneBtn.setOnClickListener(this)
-        signUpOkBtn.setOnClickListener(this)
+        signOkBtn.setOnClickListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -56,7 +56,7 @@ class WelcomeSignUpNameFragment : Fragment(), View.OnClickListener {
             R.id.switchToSignUpPhoneBtn -> {
                 Navigation.findNavController(p0).navigate(R.id.actionNameToSignUpPhoneFragment)
             }
-            R.id.signUpOkBtn -> {
+            R.id.signOkBtn -> {
                 when {
                     nameEditText.length() < 6 -> {
                         Toast.makeText(activity, "用户名至少为6位，请确认", Toast.LENGTH_LONG).show()

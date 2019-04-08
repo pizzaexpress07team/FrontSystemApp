@@ -44,26 +44,30 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
-    <style name="fade" parent="@android:style/Animation.Activity">
+    <style name="fade"
+           parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@android:anim/fade_in</item>
         <item name="android:activityOpenExitAnimation">@android:anim/fade_out</item>
         <item name="android:activityCloseEnterAnimation">@android:anim/fade_in</item>
         <item name="android:activityCloseExitAnimation">@android:anim/fade_out</item>
     </style>
 
-    <style name="bottomNav" parent="Widget.Design.BottomNavigationView">
+    <style name="bottomNav"
+           parent="Widget.Design.BottomNavigationView">
         <item name="android:background">@android:color/white</item>
         <item name="itemTextAppearanceInactive">@style/TextAppearance.BottomNavigationView.Inactive</item>
         <item name="itemTextAppearanceActive">@style/TextAppearance.BottomNavigationView.Active</item>
     </style>
 
-    <style name="Toolbar" parent="Widget.MaterialComponents.Toolbar">
+    <style name="Toolbar"
+           parent="Widget.MaterialComponents.Toolbar">
         <item name="titleTextAppearance">@style/TextAppearance.Toolbar.Title</item>
         <item name="android:background">@android:color/white</item>
         <item name="titleTextColor">@color/toolbarTitle</item>
     </style>
 
-    <style name="TabLayout" parent="Widget.Design.TabLayout">
+    <style name="TabLayout"
+           parent="Widget.Design.TabLayout">
         <item name="enforceTextAppearance">true</item>
         <item name="tabTextAppearance">@style/TextAppearance.TabText</item>
         <item name="android:background">@android:color/white</item>
@@ -99,6 +103,19 @@
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
     </style>
 
+    <style name="TextAppearance.Pizza.Name"
+           parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/itemPizza</item>
+    </style>
+
+    <style name="TextAppearance.Pizza.Price"
+           parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/itemPizza</item>
+    </style>
 
     <style name="TextAppearance.Button.Welcome"
            parent="TextAppearance.MaterialComponents.Button">
@@ -114,7 +131,7 @@
 
     <style name="TextAppearance.Toolbar.Title"
            parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="TextAppearance.Toolbar.Subtitle"
