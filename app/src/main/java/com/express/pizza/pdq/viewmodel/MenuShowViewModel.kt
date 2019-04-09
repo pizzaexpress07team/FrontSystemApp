@@ -10,7 +10,6 @@ class MenuShowViewModel : ViewModel() {
     var pizzaList: LiveData<ArrayList<Pizza>>? = null
 
     init {
-        pizzaList = pizzaRepository.pizzaList
+        pizzaList = pizzaRepository.getPizzaList()
     }
-
 }

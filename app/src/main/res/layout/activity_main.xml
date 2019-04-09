@@ -23,6 +23,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/navigation"
-            style="@style/bottomNav"/>
+            style="@style/bottomNav"
+            app:itemIconTint="@drawable/tint_color_navigation_icon"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

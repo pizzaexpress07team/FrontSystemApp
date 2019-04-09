@@ -14,6 +14,7 @@ class MenuFragment : Fragment() {
 
     companion object {
         fun newInstance() = MenuFragment()
+        const val TAG = "MenuFragment"
     }
 
     private lateinit var viewModel: MenuViewModel

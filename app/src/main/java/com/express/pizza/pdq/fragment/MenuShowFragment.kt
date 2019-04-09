@@ -14,7 +14,6 @@ import com.express.pizza.pdq.adapter.PizzaAdapter
 import com.express.pizza.pdq.entity.Pizza
 import com.express.pizza.pdq.viewmodel.MenuShowViewModel
 import kotlinx.android.synthetic.main.menu_show_fragment.*
-import java.util.*
 
 
 class MenuShowFragment : Fragment() {
@@ -30,21 +29,30 @@ class MenuShowFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("MenuShow--", "onCreateView")
         return inflater.inflate(R.layout.menu_show_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("MenuShow--", "onViewCreated")
+
         menuRecyclerView.layoutManager = GridLayoutManager(context, 2)
+        pizzaAdapter = PizzaAdapter(context, ArrayList())
+        menuRecyclerView.adapter = pizzaAdapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Log.d("MenuShow--", "onActivityCreated")
+
         viewModel = ViewModelProviders.of(this).get(MenuShowViewModel::class.java)
         viewModel.pizzaList?.observe(this, Observer<ArrayList<Pizza>> {
             it?.apply {
-                pizzaAdapter = PizzaAdapter(this@MenuShowFragment.context, this)
-                menuRecyclerView.adapter = pizzaAdapter
+                pizzaAdapter.list = this
+                pizzaAdapter.notifyDataSetChanged()
+                pizzaAdapter.footer =
+                    LayoutInflater.from(context).inflate(R.layout.item_pizza_footer, menuRecyclerView, false)
             }
         })
 

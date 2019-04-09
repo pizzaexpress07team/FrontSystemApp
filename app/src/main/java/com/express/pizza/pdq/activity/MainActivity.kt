@@ -3,6 +3,7 @@ package com.express.pizza.pdq.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.fragment.MeFragment
 import com.express.pizza.pdq.fragment.MenuFragment
@@ -12,18 +13,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var currentFragment: Fragment? = null
     private val fragmentList: ArrayList<Fragment> = ArrayList()
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_menu -> {
-                switchFragment(0)
+                switchFragment(fragmentList[0]).commit()
             }
             R.id.navigation_order -> {
-                switchFragment(1)
+                switchFragment(fragmentList[1]).commit()
             }
             R.id.navigation_me -> {
-                switchFragment(2)
+                switchFragment(fragmentList[2]).commit()
             }
         }
         true
@@ -35,15 +37,25 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
 
+    private fun switchFragment(targetFragment: Fragment): FragmentTransaction {
+        val transaction = supportFragmentManager.beginTransaction()
+        if (!targetFragment.isAdded) {
+            currentFragment?.apply {
+                transaction.hide(this)
+            }
+            transaction.add(R.id.main_container, targetFragment, targetFragment.tag)
+        } else {
+            transaction.hide(currentFragment!!).show(targetFragment)
+        }
+        currentFragment = targetFragment
+        return transaction
+    }
+
     private fun initView() {
         fragmentList.add(MenuFragment.newInstance())
         fragmentList.add(OrderFragment.newInstance())
         fragmentList.add(MeFragment.newInstance())
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        switchFragment(0)
-    }
-
-    private fun switchFragment(index: Int) {
-        supportFragmentManager.beginTransaction().replace(R.id.main_container, fragmentList[index]).commit()
+        switchFragment(fragmentList[0]).commit()
     }
 }

@@ -6,30 +6,86 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.entity.Pizza
 
+
 class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.Adapter<PizzaAdapter.ViewHolder>() {
+    companion object {
+        private const val TYPE_FOOTER = 1
+        private const val TYPE_NORMAL = 0
+    }
+
+    var footer: View? = null
+        set(value) {
+            field = value
+            notifyItemInserted(itemCount - 1)
+        }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (footer != null && position == itemCount - 1) {
+            TYPE_FOOTER
+        } else {
+            TYPE_NORMAL
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        when (viewType) {
+            TYPE_FOOTER -> footer?.apply { return ViewHolder(this) }
+        }
         val itemView = LayoutInflater.from(context).inflate(R.layout.item_pizza_layout, null)
         return ViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return if (footer == null) {
+            list.size
+        } else {
+            list.size + 1
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name.text = list[position].p_name
-        holder.kind.text = list[position].p_type
-        holder.price.text = "¥" + String.format("%.2f", list[position].price)
+        when (getItemViewType(position)) {
+            TYPE_FOOTER -> return
+            else -> {
+                holder.name.text = list[position].p_name
+                holder.kind.text = list[position].p_type
+                holder.price.text = "¥" + String.format("%.2f", list[position].price)
+            }
+        }
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        val manager = recyclerView.layoutManager
+        if (manager is GridLayoutManager) {
+            manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return if (getItemViewType(position) == TYPE_FOOTER) manager.spanCount else 1
+                }
+
+            }
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var name: TextView = itemView.findViewById(R.id.itemName)
-        var kind: TextView = itemView.findViewById(R.id.itemKind)
-        var img: ImageView = itemView.findViewById(R.id.itemImg)
-        var price: TextView = itemView.findViewById(R.id.itemPrice)
+        lateinit var name: TextView
+        lateinit var kind: TextView
+        lateinit var img: ImageView
+        lateinit var price: TextView
+
+        init {
+            if (itemView == footer) {
+            } else {
+                name = itemView.findViewById(R.id.itemName)
+                kind = itemView.findViewById(R.id.itemKind)
+                price = itemView.findViewById(R.id.itemPrice)
+                img = itemView.findViewById(R.id.itemImg)
+            }
+        }
     }
 }

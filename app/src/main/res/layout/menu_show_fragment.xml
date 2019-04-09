@@ -13,15 +13,16 @@
         <androidx.appcompat.widget.Toolbar
                 android:layout_height="48dp"
                 android:layout_width="match_parent"
-                app:layout_scrollFlags="scroll|snap"
                 app:title="Pizza Express"
                 style="@style/Toolbar"
                 app:logo="@drawable/logo_toolbar"
-                app:titleMarginStart="28dp"/>
+                app:titleMarginStart="28dp"
+                app:layout_scrollFlags="scroll|snap"
+                android:elevation="4dp"/>
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:background="@android:color/white">
 
             <TextView
@@ -29,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="12dp"
                     android:id="@+id/textView4"
@@ -37,7 +38,7 @@
                     android:textStyle="bold"/>
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="152dp"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -105,8 +106,9 @@
                 android:layout_height="40dp"
                 app:tabMode="scrollable"
                 style="@style/TabLayout"
-                app:tabIconTint="@drawable/tint_color_icon"
-                app:tabIndicatorFullWidth="false">
+                app:tabIconTint="@drawable/tint_color_tab_icon"
+                app:tabIndicatorFullWidth="false"
+        >
             <com.google.android.material.tabs.TabItem
                     android:layout_height="32dp"
                     android:layout_width="wrap_content"
@@ -133,10 +135,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:scrollbars="vertical"
             android:scrollbarFadeDuration="200"
             android:fadeScrollbars="true"
             android:overScrollMode="always"
+            android:scrollbars="vertical"
+            android:scrollbarSize="3dp"
     >
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -145,13 +148,13 @@
                 android:id="@+id/menuRecyclerView"
                 android:clipToPadding="false"
                 android:clipChildren="false"
-                android:overScrollMode="always"
                 tools:spanCount="2"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                android:paddingBottom="72dp"
                 android:paddingEnd="6dp"
                 android:paddingStart="6dp"
-                android:paddingTop="6dp"/>
+                android:paddingTop="6dp"
+                android:nestedScrollingEnabled="false"
+        />
     </androidx.core.widget.NestedScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -164,5 +167,6 @@
             android:layout_margin="16dp"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:tint="@android:color/white"
-            app:fabSize="auto"/>
+            app:fabSize="auto"
+    />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

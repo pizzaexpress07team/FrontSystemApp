@@ -1,36 +1,36 @@
 package com.express.pizza.pdq.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.express.pizza.pdq.entity.Pizza
+import com.express.pizza.pdq.entity.UserInfo
 import com.express.pizza.pdq.utils.UrlConst
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.google.gson.reflect.TypeToken
 import com.zhy.http.okhttp.OkHttpUtils
 import com.zhy.http.okhttp.callback.StringCallback
 import okhttp3.Call
 
-class PizzaRepository {
+class UserInfoRepository {
     companion object {
-        const val URL_MENU_INFO = UrlConst.URL_PRE + "/menu/info"
+        const val URL_USER_INFO = UrlConst.URL_PRE + "/user/view"
     }
 
-    private var pizzaList: MutableLiveData<ArrayList<Pizza>>? = null
+    private var userInfo: MutableLiveData<UserInfo>? = null
 
-    fun fetchPizzaList() {
+    fun fetchUserInfo(uid: String) {
         OkHttpUtils
             .get()
-            .url(URL_MENU_INFO)
+            .url(URL_USER_INFO)
+            .addParams("uid", uid)
             .build()
             .execute(object : StringCallback() {
                 override fun onResponse(response: String?, id: Int) {
+                    Log.d("User--", response)
                     val gson = Gson()
                     val jsonObject = gson.fromJson(response, JsonObject::class.java).asJsonObject
                     if (jsonObject.get("errorCode").asInt == 0) {
-                        val listType = object : TypeToken<ArrayList<Pizza>>() {}.type
-                        pizzaList?.value = gson.fromJson(jsonObject.get("list"), listType)
-                        pizzaList?.value?.addAll(gson.fromJson<ArrayList<Pizza>>(jsonObject.get("list"), listType))
-//                            Log.d("Menu--", list.value.toString())
+                        Log.d("User--", jsonObject.get("userInfo").asJsonObject.toString())
+                        userInfo?.value = gson.fromJson(jsonObject.get("userInfo").asJsonObject, UserInfo::class.java)
                     }
                 }
 
@@ -39,11 +39,11 @@ class PizzaRepository {
             })
     }
 
-    fun getPizzaList(): MutableLiveData<ArrayList<Pizza>> {
-        if (pizzaList == null) {
-            pizzaList = MutableLiveData()
-            fetchPizzaList()
+    fun getUserInfo(uid: String): MutableLiveData<UserInfo> {
+        if (userInfo == null) {
+            userInfo = MutableLiveData()
+            fetchUserInfo(uid)
         }
-        return pizzaList!!
+        return userInfo!!
     }
 }

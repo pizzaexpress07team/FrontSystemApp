@@ -2,7 +2,6 @@ package com.express.pizza.pdq.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,21 +11,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.activity.MainActivity
+import com.express.pizza.pdq.utils.SavedKeyConst
+import com.express.pizza.pdq.utils.SharedPrefsUtils
+import com.express.pizza.pdq.utils.StringUtils
+import com.express.pizza.pdq.utils.UrlConst
 import com.express.pizza.pdq.viewmodel.WelcomeSignInNameViewModel
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.zhy.http.okhttp.OkHttpUtils
 import com.zhy.http.okhttp.callback.StringCallback
 import kotlinx.android.synthetic.main.welcome_sign_in_name_fragment.*
 import okhttp3.Call
-import com.google.gson.Gson
-
 
 
 class WelcomeSignInNameFragment : Fragment() {
 
     companion object {
         fun newInstance() = WelcomeSignInNameFragment()
-        const val URL_LOGIN = "http://3.86.76.105:8080/user/login"
+        const val URL_LOGIN = UrlConst.URL_PRE + "/user/login"
     }
 
     private lateinit var viewModel: WelcomeSignInNameViewModel
@@ -72,16 +74,17 @@ class WelcomeSignInNameFragment : Fragment() {
                             val jsonObject = Gson().fromJson(response, JsonObject::class.java).asJsonObject
                             when (jsonObject.get("errorCode").asInt) {
                                 0 -> {
+                                    val username = StringUtils.getJsonString(jsonObject.get("username").toString())
                                     Toast.makeText(
                                         context,
-                                        "欢迎回来，" + jsonObject.get("username").toString().let {
-                                            it.substring(
-                                                1,
-                                                it.length - 1
-                                            )
-                                        },
-                                        Toast.LENGTH_LONG
+                                        "欢迎回来，$username!", Toast.LENGTH_LONG
                                     ).show()
+                                    SharedPrefsUtils.putValue(context, SavedKeyConst.IS_SIGNED_IN, true)
+                                    SharedPrefsUtils.putValue(
+                                        context,
+                                        SavedKeyConst.SAVED_UID,
+                                        StringUtils.getJsonString(jsonObject.get("uid").toString())
+                                    )
                                     startActivity(Intent(activity, MainActivity::class.java))
                                     activity?.finish()
                                 }
@@ -98,6 +101,7 @@ class WelcomeSignInNameFragment : Fragment() {
 
                         override fun onError(call: Call?, e: java.lang.Exception?, id: Int) {
                             Toast.makeText(context, "网络异常", Toast.LENGTH_LONG).show()
+                            okProgressBar.visibility = View.GONE
                         }
                     })
             }
