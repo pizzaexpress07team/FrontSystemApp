@@ -12,7 +12,7 @@ import okhttp3.Call
 
 class UserInfoRepository {
     companion object {
-        const val URL_USER_INFO = UrlConst.URL_PRE + "/user/view"
+        var URL_USER_INFO = UrlConst.URL_PRE + "/user/view"
     }
 
     private var userInfo: MutableLiveData<UserInfo>? = null

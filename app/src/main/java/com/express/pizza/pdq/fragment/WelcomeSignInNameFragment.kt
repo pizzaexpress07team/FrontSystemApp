@@ -28,7 +28,7 @@ class WelcomeSignInNameFragment : Fragment() {
 
     companion object {
         fun newInstance() = WelcomeSignInNameFragment()
-        const val URL_LOGIN = UrlConst.URL_PRE + "/user/login"
+        var URL_LOGIN = UrlConst.URL_PRE + "/user/login"
     }
 
     private lateinit var viewModel: WelcomeSignInNameViewModel

@@ -12,7 +12,7 @@ import okhttp3.Call
 
 class PizzaRepository {
     companion object {
-        const val URL_MENU_INFO = UrlConst.URL_PRE + "/menu/info"
+        var URL_MENU_INFO = UrlConst.URL_PRE + "/menu/info"
     }
 
     private var pizzaList: MutableLiveData<ArrayList<Pizza>>? = null

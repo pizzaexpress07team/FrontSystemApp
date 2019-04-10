@@ -1,5 +1,6 @@
 package com.express.pizza.pdq.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.entity.Pizza
 
@@ -17,6 +20,8 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
         private const val TYPE_FOOTER = 1
         private const val TYPE_NORMAL = 0
     }
+
+    var addClickListener: AddClickListener? = null
 
     var footer: View? = null
         set(value) {
@@ -36,7 +41,7 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
         when (viewType) {
             TYPE_FOOTER -> footer?.apply { return ViewHolder(this) }
         }
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item_pizza_layout, null)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.item_pizza_layout, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -48,13 +53,23 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             TYPE_FOOTER -> return
             else -> {
-                holder.name.text = list[position].p_name
+                holder.name.text = "${list[position].p_name} ${list[position].p_size}'"
                 holder.kind.text = list[position].p_type
-                holder.price.text = "¥" + String.format("%.2f", list[position].price)
+                holder.price.text = "¥${String.format("%.2f", list[position].price)}"
+                Glide.with(context!!)
+                    .load(list[position].p_picture)
+                    .apply(RequestOptions().placeholder(R.drawable.pizza_item_place_holder))
+                    .into(holder.img)
+                holder.addBtn.setOnClickListener {
+                    addClickListener?.apply {
+                        this.onAddClicked(list[position])
+                    }
+                }
             }
         }
     }
@@ -77,6 +92,7 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
         lateinit var kind: TextView
         lateinit var img: ImageView
         lateinit var price: TextView
+        lateinit var addBtn: ImageView
 
         init {
             if (itemView == footer) {
@@ -85,7 +101,12 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
                 kind = itemView.findViewById(R.id.itemKind)
                 price = itemView.findViewById(R.id.itemPrice)
                 img = itemView.findViewById(R.id.itemImg)
+                addBtn = itemView.findViewById(R.id.itemAdd)
             }
         }
+    }
+
+    interface AddClickListener {
+        fun onAddClicked(pizza: Pizza)
     }
 }

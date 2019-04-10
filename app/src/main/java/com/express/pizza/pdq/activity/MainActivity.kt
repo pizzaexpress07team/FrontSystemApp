@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.fragment.MeFragment
 import com.express.pizza.pdq.fragment.MenuFragment
@@ -57,5 +58,21 @@ class MainActivity : AppCompatActivity() {
         fragmentList.add(MeFragment.newInstance())
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         switchFragment(fragmentList[0]).commit()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        if (currentFragment == fragmentList[0]) {
+            return Navigation.findNavController(this, R.id.menu_container).navigateUp()
+        }
+        return super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        if (currentFragment == fragmentList[0]
+            && Navigation.findNavController(this, R.id.menu_container).popBackStack()
+        ) {
+            return
+        }
+        super.onBackPressed()
     }
 }

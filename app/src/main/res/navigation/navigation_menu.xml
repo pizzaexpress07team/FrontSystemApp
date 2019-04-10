@@ -8,5 +8,12 @@
     <fragment android:id="@+id/menuShowFragment"
               android:name="com.express.pizza.pdq.fragment.MenuShowFragment"
               android:label="MenuShowFragment"
-              tools:layout="@layout/menu_show_fragment"/>
+              tools:layout="@layout/menu_show_fragment">
+        <action android:id="@+id/actionMenuShowToMenuCart"
+                app:destination="@id/menuCartFragment"/>
+    </fragment>
+    <fragment android:id="@+id/menuCartFragment"
+              android:name="com.express.pizza.pdq.fragment.MenuCartFragment"
+              android:label="MenuCartFragment"
+              tools:layout="@layout/menu_cart_fragment"/>
 </navigation>
