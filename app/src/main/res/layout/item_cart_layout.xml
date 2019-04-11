@@ -42,7 +42,9 @@
             android:textSize="16sp"
             android:textColor="@color/listItemPrimary"
             app:layout_constraintBottom_toTopOf="@+id/itemSize"
-            app:layout_constraintVertical_chainStyle="packed"/>
+            app:layout_constraintVertical_chainStyle="packed"
+            android:fontFamily="sans-serif-condensed"
+    />
     <TextView
             android:text="6英寸"
             android:layout_width="wrap_content"
@@ -86,7 +88,7 @@
             android:id="@+id/itemAdd"
             app:layout_constraintTop_toTopOf="@+id/itemCount"
             app:layout_constraintBottom_toBottomOf="@+id/itemCount"
-            android:tint="@color/colorAccent"
+            android:tint="@color/itemAdd"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="80dp"
             android:padding="8dp"/>
@@ -95,7 +97,7 @@
             android:layout_height="40dp"
             app:srcCompat="@drawable/ic_remove_circle"
             android:id="@+id/itemRemove"
-            android:tint="@color/colorAccent"
+            android:tint="@color/itemAdd"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintTop_toTopOf="@+id/itemCount"
             app:layout_constraintBottom_toBottomOf="@+id/itemCount"

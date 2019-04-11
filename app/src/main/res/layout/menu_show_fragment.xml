@@ -13,13 +13,13 @@
         <androidx.appcompat.widget.Toolbar
                 android:layout_height="48dp"
                 android:layout_width="match_parent"
-                app:title="Pizza Express"
                 style="@style/Toolbar"
-                app:logo="@drawable/logo_toolbar"
-                app:titleMarginStart="26dp"
+                app:titleMarginStart="24dp"
                 app:layout_scrollFlags="scroll|snap"
                 android:elevation="4dp"
-                android:id="@+id/toolbarMenuShow"/>
+                android:id="@+id/toolbarMenuShow"
+                app:title="@string/title_toolbar_main"
+                app:logo="@drawable/ic_food_pizza"/>
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -35,8 +35,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="16dp"
                     android:id="@+id/textView4"
-                    android:textAppearance="@style/TextAppearance.Toolbar.Subtitle"
-                    android:textStyle="bold"/>
+                    android:textSize="16sp"
+                    android:textColor="@color/listItemSecondary"/>
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="152dp"

@@ -51,7 +51,7 @@
                     android:textAlignment="center"
                     android:textSize="16sp"
                     app:strokeColor="@color/colorPrimary"
-            />
+                    app:iconGravity="textStart"/>
             <com.google.android.material.button.MaterialButton
                     android:text="验证码登录"
                     android:layout_width="0dp"
@@ -60,7 +60,7 @@
                     style="@style/Button.OutlinedButton.Icon"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     app:icon="@drawable/ic_smartphone"
                     android:textAlignment="center"
                     app:layout_constraintTop_toBottomOf="@+id/signInByNameBtn"
@@ -69,7 +69,8 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     android:layout_marginEnd="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:iconGravity="textStart"/>
             <com.google.android.material.button.MaterialButton
                     android:text="手机密码登录"
                     android:layout_width="0dp"
@@ -78,7 +79,7 @@
                     style="@style/Button.OutlinedButton.Icon"
                     android:layout_marginEnd="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     app:icon="@drawable/ic_smartphone"
                     android:textAlignment="center"
                     app:layout_constraintTop_toBottomOf="@+id/signInByCodeBtn"
@@ -87,7 +88,8 @@
                     android:textSize="16sp"
                     app:strokeColor="@color/colorPrimary"
                     android:layout_marginStart="32dp"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:iconGravity="textStart"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

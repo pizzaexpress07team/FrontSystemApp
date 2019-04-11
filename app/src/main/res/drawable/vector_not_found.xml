@@ -3,7 +3,7 @@
         android:viewportWidth="1120.5923"
         android:width="1121dp"
         xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#FF6565"
+    <path android:fillColor="@color/itemAdd"
           android:pathData="M212.59,103m-64,0a64,64 0,1 1,128 0a64,64 0,1 1,-128 0"/>
     <path android:fillColor="#f2f2f2"
           android:pathData="M523.98,343.12c0,151.01 -89.77,203.74 -200.52,203.74S122.95,494.13 122.95,343.12 323.46,0 323.46,0 523.98,192.11 523.98,343.12Z"/>

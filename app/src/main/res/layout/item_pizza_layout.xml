@@ -68,12 +68,12 @@
             <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    app:srcCompat="@drawable/ic_add"
+                    app:srcCompat="@drawable/ic_add_circle"
                     android:id="@+id/itemAdd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:padding="8dp"
-                    android:tint="@color/myAccent"
+                    android:tint="@color/itemAdd"
                     android:foreground="?android:selectableItemBackgroundBorderless"
                     android:adjustViewBounds="true"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

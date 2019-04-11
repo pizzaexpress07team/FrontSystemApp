@@ -132,6 +132,7 @@
     <style name="TextAppearance.Toolbar.Title"
            parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif-condensed-medium</item>
     </style>
 
     <style name="TextAppearance.Toolbar.Subtitle"

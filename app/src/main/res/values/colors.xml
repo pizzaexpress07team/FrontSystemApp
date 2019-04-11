@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#FFC107</color>
     <color name="colorPrimaryDark">#FFA000</color>
-    <color name="myAccent">#FFA000</color>
+    <color name="myAccent">#FFA726</color>
+
     <color name="colorAccent">#FFB300</color>
 
     <color name="defaultBackground">#fafafa</color>
@@ -21,6 +22,7 @@
 
     <color name="itemPizza">#2F2E41</color>
     <color name="itemTag">#C3C3C3</color>
+    <color name="itemAdd">#EF5350</color>
 
     <color name="listItemPrimary">#de000000</color>
     <color name="listItemSecondary">#992F2E41</color>
