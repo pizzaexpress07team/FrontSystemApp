@@ -33,3 +33,9 @@
 #okio
 -dontwarn okio.**
 -keep class okio.**{*;}
+
+
+#baidu
+-keep class com.baidu.** {*;}
+-keep class mapsdkvi.com.** {*;}
+-dontwarn com.baidu.**
