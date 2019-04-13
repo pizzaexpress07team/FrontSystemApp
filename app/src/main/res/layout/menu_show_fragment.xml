@@ -157,7 +157,7 @@
                 android:nestedScrollingEnabled="false"
                 android:layoutAnimation="@anim/grid_layout_animation_from_bottom"
                 tools:layoutAnimation="@null"
-                tools:itemCount="2"
+                tools:itemCount="3"
                 tools:spanCount="2"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
     </androidx.core.widget.NestedScrollView>

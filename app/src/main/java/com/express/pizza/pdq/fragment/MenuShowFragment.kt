@@ -1,6 +1,7 @@
 package com.express.pizza.pdq.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +15,9 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.express.pizza.pdq.R
+import com.express.pizza.pdq.activity.ItemDetailsActivity
 import com.express.pizza.pdq.adapter.PizzaAdapter
+import com.express.pizza.pdq.callback.ItemContentClickListener
 import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
 import com.express.pizza.pdq.viewmodel.MenuViewModel
@@ -22,7 +25,7 @@ import kotlinx.android.synthetic.main.menu_show_fragment.*
 import java.math.BigDecimal
 
 
-class MenuShowFragment : Fragment(), ItemCountClickListener {
+class MenuShowFragment : Fragment(), ItemCountClickListener, ItemContentClickListener {
 
     companion object {
         fun newInstance() = MenuShowFragment()
@@ -49,6 +52,7 @@ class MenuShowFragment : Fragment(), ItemCountClickListener {
     private fun initView() {
         pizzaAdapter = PizzaAdapter(context, ArrayList())
         pizzaAdapter.itemCountClickListener = this
+        pizzaAdapter.itemContentClickListener = this
         menuRecyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = pizzaAdapter
@@ -103,6 +107,12 @@ class MenuShowFragment : Fragment(), ItemCountClickListener {
         pizzaAdapter.cartMap = viewModel.cartItemMap
         pizzaAdapter.notifyItemChanged(position)
         refreshFab()
+    }
+
+    override fun onItemClicked(pizza: Pizza) {
+        val intent = Intent(activity, ItemDetailsActivity::class.java)
+        intent.putExtra(ItemDetailsActivity.DETAILS_IMG, pizza.p_picture)
+        startActivity(intent)
     }
 
     override fun onResume() {

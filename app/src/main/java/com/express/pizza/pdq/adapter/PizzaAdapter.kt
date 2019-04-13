@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.express.pizza.pdq.R
+import com.express.pizza.pdq.callback.ItemContentClickListener
 import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
 
@@ -26,6 +28,7 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
     var cartMap: LinkedHashMap<Pizza, Int>? = null
 
     var itemCountClickListener: ItemCountClickListener? = null
+    var itemContentClickListener: ItemContentClickListener? = null
 
     var footer: View? = null
         set(value) {
@@ -74,12 +77,14 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
                 if (count == 0) {
                     holder.removeBtn.visibility = View.GONE
                     holder.count.visibility = View.GONE
+                    holder.cardView.isActivated = false
                 } else {
                     holder.removeBtn.visibility = View.VISIBLE
                     holder.count.apply {
                         visibility = View.VISIBLE
                         text = count.toString()
                     }
+                    holder.cardView.isActivated = true
                 }
                 holder.addBtn.setOnClickListener {
                     itemCountClickListener?.apply {
@@ -89,6 +94,11 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
                 holder.removeBtn.setOnClickListener {
                     itemCountClickListener?.apply {
                         this.onCountDecreaseClicked(list[position], position)
+                    }
+                }
+                holder.cardView.setOnClickListener {
+                    itemContentClickListener?.apply {
+                        this.onItemClicked(list[position])
                     }
                 }
             }
@@ -115,6 +125,7 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
         lateinit var addBtn: ImageView
         lateinit var removeBtn: ImageView
         lateinit var count: TextView
+        lateinit var cardView: CardView
 
         init {
             if (itemView != footer) {
@@ -125,6 +136,7 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
                 addBtn = itemView.findViewById(R.id.itemAdd)
                 removeBtn = itemView.findViewById(R.id.itemRemove)
                 count = itemView.findViewById(R.id.itemCount)
+                cardView = itemView.findViewById(R.id.itemCardView)
             }
         }
     }

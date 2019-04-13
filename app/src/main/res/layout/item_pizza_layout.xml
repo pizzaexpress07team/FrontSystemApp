@@ -10,7 +10,11 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="4dp"
             android:layout_margin="8dp"
-            app:cardElevation="2dp">
+            app:cardElevation="1.5dp"
+            android:id="@+id/itemCardView"
+            android:stateListAnimator="@animator/pressed_and_activated_raise_up"
+            android:clickable="true"
+            android:focusable="true">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
