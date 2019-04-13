@@ -98,7 +98,7 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
                 }
                 holder.cardView.setOnClickListener {
                     itemContentClickListener?.apply {
-                        this.onItemClicked(list[position])
+                        this.onItemClicked(holder.img, list[position])
                     }
                 }
             }

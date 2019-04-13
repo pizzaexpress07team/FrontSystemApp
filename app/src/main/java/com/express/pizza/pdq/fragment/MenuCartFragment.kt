@@ -1,6 +1,8 @@
 package com.express.pizza.pdq.fragment
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,18 +14,23 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.express.pizza.pdq.R
+import com.express.pizza.pdq.activity.ItemDetailsActivity
 import com.express.pizza.pdq.adapter.CartItemAdapter
+import com.express.pizza.pdq.callback.ItemContentClickListener
 import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
 import com.express.pizza.pdq.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.menu_cart_fragment.*
 
-class MenuCartFragment : Fragment(), ItemCountClickListener {
+class MenuCartFragment : Fragment(), ItemCountClickListener, ItemContentClickListener {
 
     companion object {
         fun newInstance() = MenuCartFragment()
@@ -53,6 +60,7 @@ class MenuCartFragment : Fragment(), ItemCountClickListener {
         }
         cartItemAdapter = CartItemAdapter(context, LinkedHashMap())
         cartItemAdapter.itemCountClickListener = this
+        cartItemAdapter.itemContentClickListener = this
         cartRecyclerView.adapter = cartItemAdapter
         cartRecyclerView.layoutManager = LinearLayoutManager(context)
         cartRecyclerView.itemAnimator = DefaultItemAnimator().apply {
@@ -139,6 +147,21 @@ class MenuCartFragment : Fragment(), ItemCountClickListener {
                 }
             }
         }
+    }
+
+    override fun onItemClicked(view: View, pizza: Pizza) {
+        val intent = Intent(activity, ItemDetailsActivity::class.java)
+        intent.apply {
+            putExtra(ItemDetailsActivity.DETAILS_IMG, pizza.p_picture)
+            putExtra(ItemDetailsActivity.DETAILS_NAME, pizza.p_name)
+            putExtra(ItemDetailsActivity.DETAILS_SIZE, pizza.p_size)
+            putExtra(ItemDetailsActivity.DETAILS_PRICE, pizza.price)
+        }
+        val participant = Pair(view, ViewCompat.getTransitionName(view))
+        val transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity as Activity, participant
+        )
+        startActivity(intent, transitionActivityOptions.toBundle())
     }
 
     private fun showClearCartDialog() {

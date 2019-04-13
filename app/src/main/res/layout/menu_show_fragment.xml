@@ -141,7 +141,7 @@
             android:scrollbarFadeDuration="200"
             android:fadeScrollbars="true"
             android:overScrollMode="ifContentScrolls"
-            android:scrollbars="vertical"
+            android:scrollbars="none"
             android:scrollbarSize="3dp"
             android:background="@android:color/white">
         <com.express.pizza.pdq.view.GridRecyclerView

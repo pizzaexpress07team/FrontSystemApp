@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
             android:layout_height="48dp"
             android:layout_width="match_parent"
-            app:title="Pizza name"
+            app:title="餐品详情"
             style="@style/Toolbar"
             android:elevation="4dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -24,5 +24,57 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbarDetails"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            android:transitionName="transition_img"/>
+    <TextView
+            android:text="Pizza name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemName"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/itemImg"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:textAppearance="@style/TextAppearance.Pizza.Name"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/itemPrice"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <TextView
+            android:text="6 英寸"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemSize"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/itemName"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed"/>
+    <TextView
+            android:text="¥30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemPrice"
+            app:layout_constraintTop_toBottomOf="@+id/itemImg"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TextAppearance.Pizza.Price"
+            android:textSize="18sp"/>
+    <TextView
+            android:text="原料：面粉、鸡肉、芝士、火腿"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemResource"
+            app:layout_constraintTop_toBottomOf="@+id/itemSize"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/listItemSecondary"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="16sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

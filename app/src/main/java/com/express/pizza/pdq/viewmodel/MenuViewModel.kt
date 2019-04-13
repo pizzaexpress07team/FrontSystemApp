@@ -19,11 +19,20 @@ class MenuViewModel : ViewModel() {
 
     fun refreshList() {
         pizzaList = pizzaRepository.getPizzaList()
-//        pizzaList?.value?.apply {
+        pizzaList?.value?.apply {
+            if (!isCartEmpty()) {
+                for (pizza in cartItemMap.keys) {
+                    if (!contains(pizza)) {
+                        cartItemMap.remove(pizza)
+                    }
+                }
+            }
+            //todo 分类
 //            for (pizza in this) {
 //
 //            }
-//        }
+
+        }
     }
 
     fun getTotalPrice(): Double {

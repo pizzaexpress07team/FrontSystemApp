@@ -31,7 +31,8 @@
                     app:layout_constraintDimensionRatio="4:3"
                     android:contentDescription="Pizza展示图片"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:transitionName="transition_img"/>
             <TextView
                     android:text="夏威夷比萨"
                     android:layout_width="wrap_content"

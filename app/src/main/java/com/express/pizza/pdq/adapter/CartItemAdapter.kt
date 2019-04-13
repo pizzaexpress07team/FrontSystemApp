@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.express.pizza.pdq.R
+import com.express.pizza.pdq.callback.ItemContentClickListener
 import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
 
@@ -23,6 +24,8 @@ class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizz
     }
 
     var itemCountClickListener: ItemCountClickListener? = null
+    var itemContentClickListener: ItemContentClickListener? = null
+
     var keyList = ArrayList<Pizza>(map.keys)
 
     var footer: View? = null
@@ -84,6 +87,11 @@ class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizz
                         this.onCountDecreaseClicked(keyList[position], position)
                     }
                 }
+                holder.view.setOnClickListener {
+                    itemContentClickListener?.apply {
+                        this.onItemClicked(holder.img, keyList[position])
+                    }
+                }
             }
         }
     }
@@ -116,9 +124,11 @@ class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizz
         lateinit var count: TextView
         lateinit var addBtn: ImageView
         lateinit var removeBtn: ImageView
+        lateinit var view: View
 
         init {
             if (itemView != footer) {
+                view = itemView.findViewById(R.id.view)
                 name = itemView.findViewById(R.id.itemName)
                 size = itemView.findViewById(R.id.itemSize)
                 img = itemView.findViewById(R.id.itemImg)

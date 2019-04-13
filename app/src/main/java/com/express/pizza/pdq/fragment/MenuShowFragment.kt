@@ -1,6 +1,7 @@
 package com.express.pizza.pdq.fragment
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -23,7 +27,6 @@ import com.express.pizza.pdq.entity.Pizza
 import com.express.pizza.pdq.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.menu_show_fragment.*
 import java.math.BigDecimal
-
 
 class MenuShowFragment : Fragment(), ItemCountClickListener, ItemContentClickListener {
 
@@ -75,6 +78,7 @@ class MenuShowFragment : Fragment(), ItemCountClickListener, ItemContentClickLis
                 pizzaAdapter.footer =
                     LayoutInflater.from(context).inflate(R.layout.item_pizza_footer, menuRecyclerView, false)
                 runLayoutAnimation(menuRecyclerView)
+                refreshFab()
             }
         })
     }
@@ -109,10 +113,19 @@ class MenuShowFragment : Fragment(), ItemCountClickListener, ItemContentClickLis
         refreshFab()
     }
 
-    override fun onItemClicked(pizza: Pizza) {
+    override fun onItemClicked(view: View, pizza: Pizza) {
         val intent = Intent(activity, ItemDetailsActivity::class.java)
-        intent.putExtra(ItemDetailsActivity.DETAILS_IMG, pizza.p_picture)
-        startActivity(intent)
+        intent.apply {
+            putExtra(ItemDetailsActivity.DETAILS_IMG, pizza.p_picture)
+            putExtra(ItemDetailsActivity.DETAILS_NAME, pizza.p_name)
+            putExtra(ItemDetailsActivity.DETAILS_SIZE, pizza.p_size)
+            putExtra(ItemDetailsActivity.DETAILS_PRICE, pizza.price)
+        }
+        val participant = Pair(view, ViewCompat.getTransitionName(view))
+        val transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity as Activity, participant
+        )
+        startActivity(intent, transitionActivityOptions.toBundle())
     }
 
     override fun onResume() {
