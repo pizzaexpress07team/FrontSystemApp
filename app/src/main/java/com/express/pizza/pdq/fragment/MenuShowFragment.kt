@@ -1,5 +1,6 @@
 package com.express.pizza.pdq.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,12 +15,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.adapter.PizzaAdapter
+import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
 import com.express.pizza.pdq.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.menu_show_fragment.*
+import java.math.BigDecimal
 
 
-class MenuShowFragment : Fragment(), PizzaAdapter.AddClickListener {
+class MenuShowFragment : Fragment(), ItemCountClickListener {
 
     companion object {
         fun newInstance() = MenuShowFragment()
@@ -40,11 +43,18 @@ class MenuShowFragment : Fragment(), PizzaAdapter.AddClickListener {
         super.onViewCreated(view, savedInstanceState)
         Log.d("MenuShow--", "onViewCreated")
 
-        menuRecyclerView.layoutManager = GridLayoutManager(context, 2)
+        initView()
+    }
+
+    private fun initView() {
         pizzaAdapter = PizzaAdapter(context, ArrayList())
-        pizzaAdapter.addClickListener = this
-        menuRecyclerView.adapter = pizzaAdapter
-        menuRecyclerView.hasFooter = true
+        pizzaAdapter.itemCountClickListener = this
+        menuRecyclerView.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = pizzaAdapter
+            hasFooter = true
+            itemAnimator?.changeDuration = 0
+        }
         menuCartFab.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.actionMenuShowToMenuCart)
         }
@@ -65,7 +75,7 @@ class MenuShowFragment : Fragment(), PizzaAdapter.AddClickListener {
         })
     }
 
-    override fun onAddClicked(pizza: Pizza) {
+    override fun onCountIncreaseClicked(pizza: Pizza, position: Int) {
         if (viewModel.cartItemMap.containsKey(pizza)) {
             viewModel.cartItemMap.apply {
                 put(pizza, get(pizza)!! + 1)
@@ -73,6 +83,33 @@ class MenuShowFragment : Fragment(), PizzaAdapter.AddClickListener {
         } else {
             viewModel.cartItemMap[pizza] = 1
         }
+        pizzaAdapter.cartMap = viewModel.cartItemMap
+        pizzaAdapter.notifyItemChanged(position)
+        refreshFab()
+    }
+
+    override fun onCountDecreaseClicked(pizza: Pizza, position: Int) {
+        viewModel.cartItemMap.apply {
+            // 这类餐品的数量
+            val count = get(pizza)
+            count?.also {
+                if (it == 1) {
+                    remove(pizza)
+                } else {
+                    put(pizza, get(pizza)!! - 1)
+                }
+            }
+        }
+        pizzaAdapter.cartMap = viewModel.cartItemMap
+        pizzaAdapter.notifyItemChanged(position)
+        refreshFab()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        pizzaAdapter.cartMap = viewModel.cartItemMap
+        refreshFab()
+        pizzaAdapter.notifyDataSetChanged()
     }
 
     private fun runLayoutAnimation(recyclerView: RecyclerView) {
@@ -82,4 +119,17 @@ class MenuShowFragment : Fragment(), PizzaAdapter.AddClickListener {
         recyclerView.adapter?.notifyDataSetChanged()
         recyclerView.scheduleLayoutAnimation()
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun refreshFab() {
+        totalCount.apply {
+            visibility = if (viewModel.isCartEmpty()) View.GONE else View.VISIBLE
+            text = viewModel.getTotalCount().toString()
+        }
+        totalPrice.apply {
+            visibility = if (viewModel.isCartEmpty()) View.GONE else View.VISIBLE
+            text = "¥${BigDecimal(viewModel.getTotalPrice()).stripTrailingZeros().toPlainString()}"
+        }
+    }
+
 }

@@ -11,8 +11,38 @@ class MenuViewModel : ViewModel() {
     private val pizzaRepository = PizzaRepository()
     var pizzaList: LiveData<ArrayList<Pizza>>? = null
     var cartItemMap = LinkedHashMap<Pizza, Int>()
+    var typeList = TreeSet<String>()
 
     init {
+        refreshList()
+    }
+
+    fun refreshList() {
         pizzaList = pizzaRepository.getPizzaList()
+//        pizzaList?.value?.apply {
+//            for (pizza in this) {
+//
+//            }
+//        }
+    }
+
+    fun getTotalPrice(): Double {
+        var total = 0.0
+        for (entry in cartItemMap) {
+            total += entry.key.price?.times(entry.value) ?: 0.0
+        }
+        return total
+    }
+
+    fun getTotalCount(): Int {
+        var count = 0
+        for (entry in cartItemMap) {
+            count += entry.value
+        }
+        return count
+    }
+
+    fun isCartEmpty(): Boolean {
+        return cartItemMap.isEmpty()
     }
 }

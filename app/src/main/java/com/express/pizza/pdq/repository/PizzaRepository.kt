@@ -29,7 +29,7 @@ class PizzaRepository {
                     if (jsonObject.get("errorCode").asInt == 0) {
                         val listType = object : TypeToken<ArrayList<Pizza>>() {}.type
                         pizzaList?.value = gson.fromJson(jsonObject.get("list"), listType)
-                        pizzaList?.value?.addAll(gson.fromJson<ArrayList<Pizza>>(jsonObject.get("list"), listType))
+//                        pizzaList?.value?.addAll(gson.fromJson<ArrayList<Pizza>>(jsonObject.get("list"), listType))
 //                            Log.d("Menu--", list.value.toString())
                     }
                 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.express.pizza.pdq.R
+import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
 
 
@@ -21,7 +22,10 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
         private const val TYPE_NORMAL = 0
     }
 
-    var addClickListener: AddClickListener? = null
+
+    var cartMap: LinkedHashMap<Pizza, Int>? = null
+
+    var itemCountClickListener: ItemCountClickListener? = null
 
     var footer: View? = null
         set(value) {
@@ -65,9 +69,26 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
                     .load(list[position].p_picture)
                     .apply(RequestOptions().placeholder(R.drawable.pizza_item_place_holder))
                     .into(holder.img)
+
+                val count = cartMap?.get(list[position]) ?: 0
+                if (count == 0) {
+                    holder.removeBtn.visibility = View.GONE
+                    holder.count.visibility = View.GONE
+                } else {
+                    holder.removeBtn.visibility = View.VISIBLE
+                    holder.count.apply {
+                        visibility = View.VISIBLE
+                        text = count.toString()
+                    }
+                }
                 holder.addBtn.setOnClickListener {
-                    addClickListener?.apply {
-                        this.onAddClicked(list[position])
+                    itemCountClickListener?.apply {
+                        this.onCountIncreaseClicked(list[position], position)
+                    }
+                }
+                holder.removeBtn.setOnClickListener {
+                    itemCountClickListener?.apply {
+                        this.onCountDecreaseClicked(list[position], position)
                     }
                 }
             }
@@ -82,7 +103,6 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
                 override fun getSpanSize(position: Int): Int {
                     return if (getItemViewType(position) == TYPE_FOOTER) manager.spanCount else 1
                 }
-
             }
         }
     }
@@ -93,20 +113,19 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
         lateinit var img: ImageView
         lateinit var price: TextView
         lateinit var addBtn: ImageView
+        lateinit var removeBtn: ImageView
+        lateinit var count: TextView
 
         init {
-            if (itemView == footer) {
-            } else {
+            if (itemView != footer) {
                 name = itemView.findViewById(R.id.itemName)
                 kind = itemView.findViewById(R.id.itemKind)
                 price = itemView.findViewById(R.id.itemPrice)
                 img = itemView.findViewById(R.id.itemImg)
                 addBtn = itemView.findViewById(R.id.itemAdd)
+                removeBtn = itemView.findViewById(R.id.itemRemove)
+                count = itemView.findViewById(R.id.itemCount)
             }
         }
-    }
-
-    interface AddClickListener {
-        fun onAddClicked(pizza: Pizza)
     }
 }

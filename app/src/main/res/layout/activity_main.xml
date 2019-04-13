@@ -25,6 +25,7 @@
             app:menu="@menu/navigation"
             style="@style/bottomNav"
             app:itemIconTint="@drawable/tint_color_navigation_icon"
+            app:labelVisibilityMode="auto"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,22 +9,23 @@
             android:id="@+id/appbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/transparent">
+            android:background="@android:color/white"
+    >
         <androidx.appcompat.widget.Toolbar
                 android:layout_height="48dp"
                 android:layout_width="match_parent"
                 style="@style/Toolbar"
                 app:titleMarginStart="24dp"
                 app:layout_scrollFlags="scroll|snap"
-                android:elevation="4dp"
                 android:id="@+id/toolbarMenuShow"
                 app:title="@string/title_toolbar_main"
-                app:logo="@drawable/ic_food_pizza"/>
+                app:logo="@drawable/ic_food_pizza"
+                android:background="@color/transparent"/>
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                android:background="@android:color/white">
+        >
 
             <TextView
                     android:text="今日推荐"
@@ -36,7 +37,8 @@
                     android:layout_marginStart="16dp"
                     android:id="@+id/textView4"
                     android:textSize="16sp"
-                    android:textColor="@color/listItemSecondary"/>
+                    android:textColor="@color/listItemSecondary"
+                    android:textStyle="bold"/>
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="152dp"
@@ -49,7 +51,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView4"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="4dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="2dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -80,10 +82,10 @@
                             android:layout_marginStart="16dp"
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_marginTop="16dp"
-                            android:textAppearance="@style/TextAppearance.Pizza.Name"
-                            android:textSize="24sp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="16dp"/>
+                            android:layout_marginEnd="16dp"
+                            android:textSize="24sp"
+                            android:textColor="@color/itemPizza"/>
                     <TextView
                             android:text="满满丰盛馅料\n口口令人满足"
                             android:layout_width="0dp"
@@ -109,7 +111,7 @@
                 style="@style/TabLayout"
                 app:tabIconTint="@drawable/tint_color_tab_icon"
                 app:tabIndicatorFullWidth="false"
-        >
+                android:background="@color/transparent">
             <com.google.android.material.tabs.TabItem
                     android:layout_height="32dp"
                     android:layout_width="wrap_content"
@@ -141,7 +143,7 @@
             android:overScrollMode="ifContentScrolls"
             android:scrollbars="vertical"
             android:scrollbarSize="3dp"
-    >
+            android:background="@android:color/white">
         <com.express.pizza.pdq.view.GridRecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,22 +155,81 @@
                 android:paddingStart="8dp"
                 android:paddingTop="8dp"
                 android:nestedScrollingEnabled="false"
-                tools:spanCount="2"
-                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 android:layoutAnimation="@anim/grid_layout_animation_from_bottom"
-                tools:layoutAnimation="@null"/>
+                tools:layoutAnimation="@null"
+                tools:itemCount="2"
+                tools:spanCount="2"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
     </androidx.core.widget.NestedScrollView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            app:srcCompat="@drawable/ic_shopping_cart"
-            android:id="@+id/menuCartFab"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/myAccent"
+            android:foreground="@drawable/foreground_fab"
+            app:cardCornerRadius="28dp"
             android:layout_gravity="bottom|end"
+            android:focusable="true"
+            android:elevation="8dp"
+            android:clickable="true"
             android:layout_margin="16dp"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:tint="@android:color/white"
-            app:fabSize="auto"
-            app:backgroundTint="@color/myAccent"/>
+            android:stateListAnimator="@animator/pressed_raise_up"
+            android:id="@+id/menuCartFab">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="vertical"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:padding="10dp"
+        >
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_shopping_cart"
+                    android:id="@+id/imageView7"
+                    android:tint="@android:color/white"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginStart="7dp"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintBottom_toTopOf="@+id/totalPrice"
+                    app:layout_constraintVertical_chainStyle="packed"/>
+            <TextView
+                    android:text="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/totalCount"
+                    android:textSize="6dp"
+                    android:layout_marginBottom="11dp"
+                    app:layout_constraintBottom_toBottomOf="@id/imageView7"
+                    android:textAlignment="center"
+                    android:fontFamily="sans-serif-condensed"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView7"
+                    app:layout_constraintStart_toStartOf="@+id/imageView7"
+                    android:textColor="@color/colorAccent"
+                    android:visibility="visible"
+                    android:singleLine="true"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:alpha="0"/>
+            <TextView
+                    android:text="¥98"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/totalPrice"
+                    android:textSize="10sp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    android:singleLine="true"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

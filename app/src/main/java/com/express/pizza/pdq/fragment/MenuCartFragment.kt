@@ -9,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -17,11 +18,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.adapter.CartItemAdapter
+import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
 import com.express.pizza.pdq.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.menu_cart_fragment.*
 
-class MenuCartFragment : Fragment(), CartItemAdapter.CountClickListener {
+class MenuCartFragment : Fragment(), ItemCountClickListener {
 
     companion object {
         fun newInstance() = MenuCartFragment()
@@ -29,6 +31,7 @@ class MenuCartFragment : Fragment(), CartItemAdapter.CountClickListener {
 
     private lateinit var viewModel: MenuViewModel
     private lateinit var cartItemAdapter: CartItemAdapter
+    private lateinit var footer: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,12 +52,14 @@ class MenuCartFragment : Fragment(), CartItemAdapter.CountClickListener {
             it.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
         cartItemAdapter = CartItemAdapter(context, LinkedHashMap())
-        cartItemAdapter.countClickListener = this
+        cartItemAdapter.itemCountClickListener = this
         cartRecyclerView.adapter = cartItemAdapter
         cartRecyclerView.layoutManager = LinearLayoutManager(context)
         cartRecyclerView.itemAnimator = DefaultItemAnimator().apply {
             removeDuration = 100
         }
+        footer = LayoutInflater.from(context).inflate(R.layout.item_cart_footer, cartRecyclerView, false)
+        cartItemAdapter.footer = footer
     }
 
     private fun refresh() {
@@ -64,7 +69,7 @@ class MenuCartFragment : Fragment(), CartItemAdapter.CountClickListener {
 
     @SuppressLint("SetTextI18n")
     private fun refreshState() {
-        if (viewModel.cartItemMap.isEmpty()) {
+        if (viewModel.isCartEmpty()) {
             cartEmptyImg.visibility = View.VISIBLE
             cartEmptyText.visibility = View.VISIBLE
             checkoutBtn.visibility = View.GONE
@@ -74,8 +79,8 @@ class MenuCartFragment : Fragment(), CartItemAdapter.CountClickListener {
             cartEmptyText.visibility = View.GONE
             cartScrollView.visibility = View.VISIBLE
             checkoutBtn.visibility = View.VISIBLE
-            cartCountText.text = "已选择 ${viewModel.cartItemMap.size} 种餐品，共 ${getTotalCount()} 份"
-            totalPrice.text = "¥" + String.format("%.2f", getTotalPrice())
+            cartCountText.text = "已选择 ${viewModel.cartItemMap.size} 种餐品，共 ${viewModel.getTotalCount()} 份"
+            footer.findViewById<TextView>(R.id.totalPrice).text = "¥" + String.format("%.2f", viewModel.getTotalPrice())
         }
     }
 
@@ -151,21 +156,5 @@ class MenuCartFragment : Fragment(), CartItemAdapter.CountClickListener {
             dialog.dismiss()
         }
         clearCartDialog.show()
-    }
-
-    private fun getTotalPrice(): Double {
-        var total = 0.0
-        for (entry in viewModel.cartItemMap) {
-            total += entry.key.price?.times(entry.value) ?: 0.0
-        }
-        return total
-    }
-
-    private fun getTotalCount(): Int {
-        var count = 0
-        for (entry in viewModel.cartItemMap) {
-            count += entry.value
-        }
-        return count
     }
 }

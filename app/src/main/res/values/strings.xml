@@ -2,7 +2,7 @@
     <string name="app_name">PDQ Pizza</string>
     <string name="title_menu">菜单</string>
     <string name="title_order">订单</string>
-    <string name="title_me">我</string>
+    <string name="title_me">我的</string>
 
     <string name="title_toolbar_main">PDQ Pizza Express</string>
 </resources>

@@ -35,30 +35,15 @@ class GridRecyclerView : RecyclerView {
                 params.layoutAnimationParameters = animationParams
             }
 
-            if (!hasFooter) {
-                animationParams.count = count
-                animationParams.index = index
+            animationParams.count = count
+            animationParams.index = index
 
-                val columns = layoutManager.spanCount
-                animationParams.columnsCount = columns
-                animationParams.rowsCount = count / columns
+            val columns = layoutManager.spanCount
+            animationParams.columnsCount = columns
+            animationParams.rowsCount = count / columns
 
-                val invertedIndex = count - 1 - index
-                animationParams.column = columns - 1 - invertedIndex % columns
-                animationParams.row = animationParams.rowsCount - 1 - invertedIndex / columns
-            } else {
-                animationParams.count = count - 1
-                animationParams.index = index
-
-                val columns = layoutManager.spanCount
-                animationParams.columnsCount = columns
-                animationParams.rowsCount = count / columns
-
-                val invertedIndex = count - 2 - index
-                animationParams.column = columns - 1 - invertedIndex % columns
-                animationParams.row = animationParams.rowsCount - 1 - invertedIndex / columns
-            }
-
+            animationParams.column = index % columns
+            animationParams.row = index / columns
         } else {
             super.attachLayoutAnimationParameters(child, params, index, count)
         }

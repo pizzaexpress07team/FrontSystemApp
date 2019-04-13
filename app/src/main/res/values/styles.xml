@@ -41,7 +41,7 @@
         <item name="android:colorControlHighlight">@color/itemRipple</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/white</item>
-        <item name="android:windowBackground">@android:color/white</item>
+        <!--<item name="android:windowBackground">@android:color/white</item>-->
     </style>
 
     <style name="fade"
@@ -112,9 +112,10 @@
 
     <style name="TextAppearance.Pizza.Price"
            parent="TextAppearance.AppCompat">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/itemPizza</item>
+        <item name="android:textSize">16sp</item>
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textColor">@color/listItemSecondary</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
     </style>
 
     <style name="TextAppearance.Button.Welcome"
@@ -143,6 +144,7 @@
     <style name="TextAppearance.BottomNavigationView.Inactive"
            parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/bottomNavTextInactive</item>
+        <item name="android:textSize">11sp</item>
     </style>
 
     <style name="TextAppearance.BottomNavigationView.Active"

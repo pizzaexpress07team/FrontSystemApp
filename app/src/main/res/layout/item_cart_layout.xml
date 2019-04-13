@@ -82,8 +82,8 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="bold"/>
     <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             app:srcCompat="@drawable/ic_add_circle"
             android:id="@+id/itemAdd"
             app:layout_constraintTop_toTopOf="@+id/itemCount"
@@ -93,9 +93,9 @@
             android:layout_marginEnd="80dp"
             android:padding="8dp"/>
     <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:srcCompat="@drawable/ic_remove_circle"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:srcCompat="@drawable/ic_remove_circle_outline"
             android:id="@+id/itemRemove"
             android:tint="@color/itemAdd"
             app:layout_constraintHorizontal_chainStyle="packed"
