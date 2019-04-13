@@ -63,6 +63,7 @@ class WelcomeSignInNameFragment : Fragment() {
             }
             else -> {
                 okProgressBar.visibility = View.VISIBLE
+                signOkBtn.isEnabled = false
                 OkHttpUtils
                     .get()
                     .url(URL_LOGIN)
@@ -91,10 +92,12 @@ class WelcomeSignInNameFragment : Fragment() {
                                 1 -> {
                                     Toast.makeText(context, "用户名错误，请重新输入", Toast.LENGTH_LONG).show()
                                     okProgressBar.visibility = View.GONE
+                                    signOkBtn.isEnabled = true
                                 }
                                 2 -> {
                                     Toast.makeText(context, "密码错误，请重新输入", Toast.LENGTH_LONG).show()
                                     okProgressBar.visibility = View.GONE
+                                    signOkBtn.isEnabled = true
                                 }
                             }
                         }
@@ -102,6 +105,7 @@ class WelcomeSignInNameFragment : Fragment() {
                         override fun onError(call: Call?, e: java.lang.Exception?, id: Int) {
                             Toast.makeText(context, "网络异常", Toast.LENGTH_LONG).show()
                             okProgressBar.visibility = View.GONE
+                            signOkBtn.isEnabled = true
                         }
                     })
             }
