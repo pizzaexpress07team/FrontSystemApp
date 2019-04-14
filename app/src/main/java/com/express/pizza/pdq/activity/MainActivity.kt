@@ -1,6 +1,7 @@
 package com.express.pizza.pdq.activity
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.express.pizza.pdq.R
 import com.express.pizza.pdq.fragment.MeFragment
 import com.express.pizza.pdq.fragment.MenuFragment
 import com.express.pizza.pdq.fragment.OrderFragment
+import com.express.pizza.pdq.utils.CanClickUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -97,8 +99,16 @@ class MainActivity : AppCompatActivity() {
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION)
         permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         permissions.add(Manifest.permission.READ_PHONE_STATE)
-        if (!permissions.isEmpty()) {
+        if (permissions.isNotEmpty()) {
             requestPermissions(permissions.toArray(arrayOfNulls(permissions.size)), SDK_PERMISSION_REQUEST)
         }
+    }
+
+    override fun startActivityForResult(intent: Intent?, requestCode: Int, options: Bundle?) {
+        // 防止快速点击启动新Activity
+        if (!CanClickUtils.canClick()) {
+            return
+        }
+        super.startActivityForResult(intent, requestCode, options)
     }
 }
