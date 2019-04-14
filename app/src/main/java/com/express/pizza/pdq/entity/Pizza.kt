@@ -1,6 +1,8 @@
 package com.express.pizza.pdq.entity
 
-open class Pizza {
+import java.io.Serializable
+
+open class Pizza : Serializable {
     open var f_id: String? = null
     open var is_empty: Boolean? = null
     open var p_id: String? = null

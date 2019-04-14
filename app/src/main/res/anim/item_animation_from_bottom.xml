@@ -2,17 +2,28 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <translate
-            android:duration="300"
+            android:duration="280"
             android:interpolator="@android:anim/accelerate_decelerate_interpolator"
             android:fromYDelta="50%"
             android:toYDelta="0"
     />
 
+    <!--透明度动画进行中会使elevation不自然-->
     <alpha
             android:duration="400"
             android:fromAlpha="0"
             android:toAlpha="1"
-            android:interpolator="@android:anim/decelerate_interpolator"
+            android:interpolator="@android:anim/accelerate_decelerate_interpolator"
     />
+
+    <!--<scale-->
+    <!--android:interpolator="@android:anim/accelerate_decelerate_interpolator"-->
+    <!--android:duration="250"-->
+    <!--android:fromXScale="0.7"-->
+    <!--android:fromYScale="0.7"-->
+    <!--android:toXScale="1.0"-->
+    <!--android:toYScale="1.0"-->
+    <!--android:pivotX="50%"-->
+    <!--android:pivotY="50%"/>-->
 
 </set>

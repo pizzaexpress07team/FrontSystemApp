@@ -24,6 +24,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.OrderConfirmActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/OrderConfirmTheme"
+                  android:launchMode="singleTop">
+        </activity>
+
         <meta-data
                 android:name="com.baidu.lbsapi.API_KEY"
                 android:value="sPGxfKGnAoGQuiUi02lA4fpnrresQ3Eg"/>
@@ -32,11 +38,6 @@
                 android:name=".activity.SplashActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".activity.WelcomeActivity"
@@ -50,12 +51,18 @@
                 android:theme="@style/MainTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ItemDetailsActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/MainTheme"
-                  android:launchMode="singleTop">
+        <activity
+                android:name=".activity.ItemDetailsActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/MainTheme">
         </activity>
     </application>
 

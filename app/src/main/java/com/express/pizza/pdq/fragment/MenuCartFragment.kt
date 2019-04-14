@@ -23,10 +23,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.activity.ItemDetailsActivity
+import com.express.pizza.pdq.activity.OrderConfirmActivity
 import com.express.pizza.pdq.adapter.CartItemAdapter
 import com.express.pizza.pdq.callback.ItemContentClickListener
 import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
+import com.express.pizza.pdq.serialization.CartItem
 import com.express.pizza.pdq.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.menu_cart_fragment.*
 
@@ -68,6 +70,13 @@ class MenuCartFragment : Fragment(), ItemCountClickListener, ItemContentClickLis
         }
         footer = LayoutInflater.from(context).inflate(R.layout.item_cart_footer, cartRecyclerView, false)
         cartItemAdapter.footer = footer
+
+        checkoutBtn.setOnClickListener {
+            val intent = Intent(activity, OrderConfirmActivity::class.java)
+            val cartItemMap = CartItem(viewModel.cartItemMap)
+            intent.putExtra(OrderConfirmActivity.CART_ITEMS, cartItemMap)
+            startActivity(intent)
+        }
     }
 
     private fun refresh() {
@@ -90,6 +99,7 @@ class MenuCartFragment : Fragment(), ItemCountClickListener, ItemContentClickLis
             cartCountText.text = "已选择 ${viewModel.cartItemMap.size} 种餐品，共 ${viewModel.getTotalCount()} 份"
             footer.findViewById<TextView>(R.id.totalPrice).text = "¥" + String.format("%.2f", viewModel.getTotalPrice())
         }
+        activity?.invalidateOptionsMenu()
     }
 
     private fun refreshData() {
@@ -110,6 +120,11 @@ class MenuCartFragment : Fragment(), ItemCountClickListener, ItemContentClickLis
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.cart_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        menu?.getItem(0)?.isEnabled = !viewModel.isCartEmpty()
+        super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -137,15 +152,14 @@ class MenuCartFragment : Fragment(), ItemCountClickListener, ItemContentClickLis
                 if (count == 1) {
                     remove(pizza)
                     refreshData()
-                    refreshState()
                     Log.d("cart--", "$size $position")
                     cartItemAdapter.deleteItem(position)
                 } else {
                     put(pizza, get(pizza)!! - 1)
                     cartItemAdapter.notifyItemChanged(position)
-                    refreshState()
                 }
             }
+            refreshState()
         }
     }
 

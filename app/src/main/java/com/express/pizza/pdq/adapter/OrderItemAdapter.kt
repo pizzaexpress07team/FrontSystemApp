@@ -11,22 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.express.pizza.pdq.R
-import com.express.pizza.pdq.callback.ItemContentClickListener
-import com.express.pizza.pdq.callback.ItemCountClickListener
 import com.express.pizza.pdq.entity.Pizza
 
 
-class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizza, Int>) :
-    RecyclerView.Adapter<CartItemAdapter.ViewHolder>() {
+class OrderItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizza, Int>) :
+    RecyclerView.Adapter<OrderItemAdapter.ViewHolder>() {
     companion object {
         private const val TYPE_FOOTER = 1
         private const val TYPE_NORMAL = 0
     }
 
-    var itemCountClickListener: ItemCountClickListener? = null
-    var itemContentClickListener: ItemContentClickListener? = null
-
-    // 加入的Pizza
     private var keyList = ArrayList<Pizza>(map.keys)
 
     var footer: View? = null
@@ -34,6 +28,11 @@ class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizz
             field = value
             notifyItemInserted(itemCount - 1)
         }
+
+    init {
+        keyList.clear()
+        keyList.addAll(map.keys)
+    }
 
     override fun getItemViewType(position: Int): Int {
         return if (footer != null && position == itemCount - 1) {
@@ -43,17 +42,11 @@ class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizz
         }
     }
 
-    fun setMap(map: LinkedHashMap<Pizza, Int>) {
-        this.map = map
-        keyList.clear()
-        keyList.addAll(map.keys)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         when (viewType) {
             TYPE_FOOTER -> footer?.apply { return ViewHolder(this) }
         }
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item_cart_layout, parent, false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.item_cart_order_layout, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -78,44 +71,9 @@ class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizz
                     .apply(RequestOptions().placeholder(R.drawable.pizza_item_place_holder))
                     .into(holder.img)
                 holder.count.text = map[keyList[position]].toString()
-                holder.addBtn.setOnClickListener {
-                    itemCountClickListener?.apply {
-                        this.onCountIncreaseClicked(keyList[position], position)
-                    }
-                }
-                holder.removeBtn.setOnClickListener {
-                    itemCountClickListener?.apply {
-                        this.onCountDecreaseClicked(keyList[position], position)
-                    }
-                }
-                holder.view.setOnClickListener {
-                    itemContentClickListener?.apply {
-                        this.onItemClicked(holder.img, keyList[position])
-                    }
-                }
             }
         }
     }
-
-    fun deleteItem(position: Int) {
-        notifyItemRemoved(position)
-        if (position != map.size) {
-            notifyItemRangeChanged(position, map.size - position)
-        }
-    }
-
-//    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-//        super.onAttachedToRecyclerView(recyclerView)
-//        val manager = recyclerView.layoutManager
-//        if (manager is GridLayoutManager) {
-//            manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-//                override fun getSpanSize(position: Int): Int {
-//                    return if (getItemViewType(position) == TYPE_FOOTER) manager.spanCount else 1
-//                }
-//
-//            }
-//        }
-//    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lateinit var name: TextView
@@ -123,20 +81,14 @@ class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizz
         lateinit var img: ImageView
         lateinit var price: TextView
         lateinit var count: TextView
-        lateinit var addBtn: ImageView
-        lateinit var removeBtn: ImageView
-        lateinit var view: View
 
         init {
             if (itemView != footer) {
-                view = itemView.findViewById(R.id.view)
                 name = itemView.findViewById(R.id.itemName)
                 size = itemView.findViewById(R.id.itemSize)
                 img = itemView.findViewById(R.id.itemImg)
                 price = itemView.findViewById(R.id.itemPrice)
                 count = itemView.findViewById(R.id.itemCount)
-                addBtn = itemView.findViewById(R.id.itemAdd)
-                removeBtn = itemView.findViewById(R.id.itemRemove)
             }
         }
     }

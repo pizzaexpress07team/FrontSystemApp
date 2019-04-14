@@ -5,7 +5,7 @@
     <item android:title="清空购物车"
           android:id="@+id/remove_cart"
           app:showAsAction="always"
-          android:icon="@drawable/ic_remove_shopping_cart"
+          android:icon="@drawable/menu_icon"
           android:checkable="true"
     />
 </menu>

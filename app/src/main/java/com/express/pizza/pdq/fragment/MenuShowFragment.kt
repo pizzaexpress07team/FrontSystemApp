@@ -63,7 +63,7 @@ class MenuShowFragment : Fragment(), ItemCountClickListener, ItemContentClickLis
             itemAnimator?.changeDuration = 0
         }
         menuCartFab.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.actionMenuShowToMenuCart)
+            Navigation.findNavController(it).navigate(R.id.menuCartFragment)
         }
     }
 

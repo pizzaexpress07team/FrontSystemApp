@@ -54,6 +54,12 @@
         <item name="android:windowSharedElementReenterTransition">@transition/move</item>
     </style>
 
+    <style name="OrderConfirmTheme"
+           parent="MainTheme">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+
     <style name="fade"
            parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@android:anim/fade_in</item>
@@ -73,7 +79,7 @@
            parent="Widget.MaterialComponents.Toolbar">
         <item name="titleTextAppearance">@style/TextAppearance.Toolbar.Title</item>
         <item name="android:background">@android:color/white</item>
-        <item name="titleTextColor">@color/toolbarTitle</item>
+        <item name="titleTextColor">@color/toolbarMenuIcon</item>
     </style>
 
     <style name="TabLayout"
@@ -143,6 +149,7 @@
     <style name="TextAppearance.Toolbar.Title"
            parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textStyle">normal</item>
+
         <item name="android:fontFamily">sans-serif-condensed-medium</item>
     </style>
 
