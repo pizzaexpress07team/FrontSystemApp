@@ -24,10 +24,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.OrderConfirmActivity"
+        <activity android:name=".activity.AddressManagementActivity"
+                  android:launchMode="singleTop"
                   android:screenOrientation="portrait"
-                  android:theme="@style/OrderConfirmTheme"
-                  android:launchMode="singleTop">
+                  android:theme="@style/MainTheme">
+        </activity>
+        <activity
+                android:name=".activity.OrderConfirmActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/OrderConfirmTheme">
         </activity>
 
         <meta-data

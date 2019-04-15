@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toTopOf="@+id/itemSize"
             app:layout_constraintVertical_chainStyle="packed"
             android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"/>
+    />
     <TextView
             android:text="6英寸"
             android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"/>
+    />
     <TextView
             android:text="1"
             android:layout_width="wrap_content"
@@ -81,7 +81,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:textSize="14sp"
             android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"
             android:layout_marginEnd="116dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"
@@ -98,6 +97,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-condensed"
             android:textColor="@color/listItemSecondary"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

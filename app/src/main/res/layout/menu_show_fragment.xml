@@ -10,8 +10,7 @@
             android:id="@+id/appbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@android:color/white"
-    >
+            android:background="@color/transparent">
         <androidx.appcompat.widget.Toolbar
                 android:layout_height="48dp"
                 android:layout_width="match_parent"
@@ -21,6 +20,7 @@
                 android:id="@+id/toolbarMenuShow"
                 app:title="@string/title_toolbar_main"
                 app:logo="@drawable/ic_food_pizza"
+                android:elevation="0dp"
                 android:background="@color/transparent"/>
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -107,12 +107,12 @@
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 app:tabMode="scrollable"
                 style="@style/TabLayout"
                 app:tabIconTint="@drawable/tint_color_tab_icon"
                 app:tabIndicatorFullWidth="false"
-                android:background="@color/transparent">
+        >
             <com.google.android.material.tabs.TabItem
                     android:layout_height="32dp"
                     android:layout_width="wrap_content"

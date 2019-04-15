@@ -10,15 +10,17 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="4dp"
             android:layout_margin="6dp"
-            app:cardElevation="0.2dp"
+            app:cardElevation="0.75dp"
             android:id="@+id/itemCardView"
-            android:stateListAnimator="@animator/pressed_and_activated_raise_up"
+            android:stateListAnimator="@animator/activated_raise_up"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            app:cardBackgroundColor="@color/transparent"
+            android:foreground="?attr/selectableItemBackground">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-        >
+                android:background="@drawable/pizaa_item_card_backgound">
 
             <ImageView
                     android:layout_width="0dp"
@@ -32,7 +34,8 @@
                     android:contentDescription="Pizza展示图片"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:transitionName="transition_img"/>
+                    android:transitionName="transition_img"
+            />
             <TextView
                     android:text="夏威夷比萨"
                     android:layout_width="wrap_content"

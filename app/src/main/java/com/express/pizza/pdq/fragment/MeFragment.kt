@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.express.pizza.pdq.R
+import com.express.pizza.pdq.activity.AddressManagementActivity
 import com.express.pizza.pdq.activity.WelcomeActivity
 import com.express.pizza.pdq.entity.UserInfo
 import com.express.pizza.pdq.utils.SavedKeyConst
@@ -45,6 +46,9 @@ class MeFragment : Fragment() {
         }
         meExitArea.setOnClickListener {
             showExitDialog()
+        }
+        meAddressArea.setOnClickListener {
+            startActivity(Intent(activity, AddressManagementActivity::class.java))
         }
     }
 

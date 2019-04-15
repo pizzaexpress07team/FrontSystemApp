@@ -24,13 +24,14 @@
     <color name="itemPizza">#2F2E41</color>
     <color name="itemTag">#C3C3C3</color>
     <color name="itemAdd">#EF5350</color>
+    <color name="itemBorder">#F0F0F0</color>
 
     <color name="listItemPrimary">#de000000</color>
     <color name="listItemSecondary">#992F2E41</color>
 
     <color name="listItemPrimaryBackup">#de000000</color>
     <color name="listItemSecondaryBackup">#99000000</color>
-    <color name="listItemDivider">#D9D9D9</color>
+    <color name="listItemDivider">#E6E6E6</color>
     <color name="itemRipple">#1A000000</color>
 
     <color name="transparent">#00FFFFFF</color>

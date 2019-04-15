@@ -1,6 +1,7 @@
 package com.express.pizza.pdq.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,7 @@ class OrderConfirmActivity : AppCompatActivity() {
 
     var cartItemMap = LinkedHashMap<Pizza, Int>()
     var amount = 0.0
+    var shippingCost = 5.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,8 @@ class OrderConfirmActivity : AppCompatActivity() {
         }
         footer.findViewById<TextView>(R.id.totalPrice).text = "¥" + String.format("%.2f", amount)
         adapter.footer = footer
+        orderCheckBtn.setOnClickListener {
+        }
     }
 
     private fun isFirstOrder(): Boolean {
@@ -67,7 +71,7 @@ class OrderConfirmActivity : AppCompatActivity() {
     }
 
     private fun getTotalPrice(): Double {
-        var total = 0.0
+        var total = shippingCost
         for (entry in cartItemMap) {
             total += entry.key.price?.times(entry.value) ?: 0.0
         }
