@@ -3,17 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.express.pizza.pdq">
 
-    <uses-permission android:name="android.permission.INTERNET"/> <!-- 获取设备网络状态，禁用后无法获取网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- 读取设备硬件信息，统计数据 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/> <!-- 读取系统信息，包含系统版本等信息，用作统计 -->
-    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" /> -->
-    <!-- 获取设备的网络状态，鉴权所需网络代理 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> <!-- 允许sd卡写权限，需写入地图数据，禁用后无法显示地图 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- //这个权限用于进行网络定位 -->
-    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS" /> -->
-    <!-- 这个权限用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> <!-- 获取统计数据 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:allowBackup="true"
@@ -24,10 +14,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.AddressManagementActivity"
-                  android:launchMode="singleTop"
+        <activity android:name=".activity.OrderDetailActivity"
+                  android:launchMode="singleTask"
                   android:screenOrientation="portrait"
                   android:theme="@style/MainTheme">
+        </activity>
+        <activity
+                android:name=".activity.AddressManagementActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:theme="@style/MainTheme">
         </activity>
         <activity
                 android:name=".activity.OrderConfirmActivity"
@@ -44,6 +40,11 @@
                 android:name=".activity.SplashActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name=".activity.WelcomeActivity"
@@ -53,13 +54,9 @@
         </activity>
         <activity
                 android:name=".activity.MainActivity"
+                android:launchMode="singleTask"
                 android:screenOrientation="portrait"
                 android:theme="@style/MainTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>

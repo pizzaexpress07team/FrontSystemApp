@@ -48,7 +48,7 @@
             app:layout_constraintBottom_toTopOf="@+id/itemSize"
             app:layout_constraintVertical_chainStyle="packed"
             android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"/>
+    />
     <TextView
             android:text="6英寸"
             android:layout_width="wrap_content"
@@ -58,7 +58,6 @@
             app:layout_constraintTop_toBottomOf="@+id/itemName"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             android:layout_marginStart="16dp"
-            android:fontFamily="sans-serif-condensed"
             app:layout_constraintBottom_toBottomOf="parent"/>
     <TextView
             android:text="¥36.00"
@@ -72,7 +71,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:fontFamily="sans-serif-condensed"
     />
     <TextView
             android:text="1"
@@ -83,8 +81,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/cardView"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/itemAdd"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"/>
     <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"

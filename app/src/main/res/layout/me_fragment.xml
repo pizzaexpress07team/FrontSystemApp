@@ -102,7 +102,7 @@
                         android:layout_marginStart="32dp"
                         android:id="@+id/textView6"/>
                 <TextView
-                        android:text="12345678900"
+                        android:text="未绑定"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/mePhoneText"
@@ -110,7 +110,6 @@
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                        android:fontFamily="sans-serif-smallcaps"
                         android:textStyle="bold"/>
                 <ImageView
                         android:src="@drawable/ic_smartphone"
@@ -300,7 +299,8 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_marginTop="8dp"
-                    android:background="?attr/selectableItemBackground">
+                    android:background="?attr/selectableItemBackground"
+            >
                 <TextView
                         android:text="登出"
                         android:layout_width="wrap_content"

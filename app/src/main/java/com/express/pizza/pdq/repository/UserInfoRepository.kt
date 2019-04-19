@@ -2,7 +2,7 @@ package com.express.pizza.pdq.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.express.pizza.pdq.entity.UserInfo
+import com.express.pizza.pdq.business.entity.UserInfo
 import com.express.pizza.pdq.utils.UrlConst
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -25,7 +25,6 @@ class UserInfoRepository {
             .build()
             .execute(object : StringCallback() {
                 override fun onResponse(response: String?, id: Int) {
-                    Log.d("User--", response)
                     val gson = Gson()
                     val jsonObject = gson.fromJson(response, JsonObject::class.java).asJsonObject
                     if (jsonObject.get("errorCode").asInt == 0) {

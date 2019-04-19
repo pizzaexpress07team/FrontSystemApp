@@ -1,6 +1,6 @@
 package com.express.pizza.pdq.callback
 
-import com.express.pizza.pdq.entity.Pizza
+import com.express.pizza.pdq.business.entity.Pizza
 
 interface ItemCountClickListener {
     fun onCountIncreaseClicked(pizza: Pizza, position: Int)

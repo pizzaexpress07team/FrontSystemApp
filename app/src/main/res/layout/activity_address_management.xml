@@ -7,6 +7,16 @@
         android:layout_height="match_parent"
         tools:context=".activity.AddressManagementActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:itemCount="4"
+            android:id="@+id/addrRecyclerView"
+            tools:listitem="@layout/item_address_layout"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     <androidx.appcompat.widget.Toolbar
             android:layout_height="48dp"
             android:layout_width="match_parent"
@@ -16,11 +26,4 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/toolbarAddress"/>
-    <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:itemCount="4"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

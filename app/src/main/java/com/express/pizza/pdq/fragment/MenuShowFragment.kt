@@ -23,7 +23,7 @@ import com.express.pizza.pdq.activity.ItemDetailsActivity
 import com.express.pizza.pdq.adapter.PizzaAdapter
 import com.express.pizza.pdq.callback.ItemContentClickListener
 import com.express.pizza.pdq.callback.ItemCountClickListener
-import com.express.pizza.pdq.entity.Pizza
+import com.express.pizza.pdq.business.entity.Pizza
 import com.express.pizza.pdq.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.menu_show_fragment.*
 import java.math.BigDecimal
@@ -120,6 +120,7 @@ class MenuShowFragment : Fragment(), ItemCountClickListener, ItemContentClickLis
             putExtra(ItemDetailsActivity.DETAILS_NAME, pizza.p_name)
             putExtra(ItemDetailsActivity.DETAILS_SIZE, pizza.p_size)
             putExtra(ItemDetailsActivity.DETAILS_PRICE, pizza.price)
+            putExtra(ItemDetailsActivity.DETAILS_RESOURCE, pizza.resource)
         }
         val participant = Pair(view, ViewCompat.getTransitionName(view))
         val transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(

@@ -1,7 +1,7 @@
 package com.express.pizza.pdq.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.express.pizza.pdq.entity.Pizza
+import com.express.pizza.pdq.business.entity.Pizza
 import com.express.pizza.pdq.utils.UrlConst
 import com.google.gson.Gson
 import com.google.gson.JsonObject

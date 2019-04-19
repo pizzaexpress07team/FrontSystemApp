@@ -2,7 +2,7 @@ package com.express.pizza.pdq.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.express.pizza.pdq.entity.UserInfo
+import com.express.pizza.pdq.business.entity.UserInfo
 import com.express.pizza.pdq.repository.UserInfoRepository
 
 class MeViewModel : ViewModel() {

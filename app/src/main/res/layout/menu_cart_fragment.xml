@@ -26,7 +26,7 @@
                     android:layout_marginStart="16dp"
                     android:textColor="@color/listItemSecondary"
                     tools:text="已选择 3 种餐品，共 4 份"
-                    android:fontFamily="sans-serif-condensed"/>
+            />
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     app:layout_constraintTop_toBottomOf="@+id/cartCountText"

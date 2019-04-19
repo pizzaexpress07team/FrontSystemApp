@@ -18,6 +18,7 @@ class ItemDetailsActivity : AppCompatActivity() {
         const val DETAILS_NAME = "details_name"
         const val DETAILS_SIZE = "details_size"
         const val DETAILS_PRICE = "details_price"
+        const val DETAILS_RESOURCE = "details_resource"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +53,9 @@ class ItemDetailsActivity : AppCompatActivity() {
 
         itemName.text = intent.getStringExtra(DETAILS_NAME)
         itemPrice.text = "¥${String.format("%.2f", intent.getDoubleExtra(DETAILS_PRICE, 0.0))}"
-        itemSize.text = intent.getStringExtra(DETAILS_SIZE) + " 英寸"
+        itemSize.text = "规格：" + intent.getStringExtra(DETAILS_SIZE)
+        val resource = intent.getStringExtra(DETAILS_RESOURCE)
+        itemResource.text = "原料：" + resource.subSequence(1, resource.length - 1)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.callback.ItemContentClickListener
 import com.express.pizza.pdq.callback.ItemCountClickListener
-import com.express.pizza.pdq.entity.Pizza
+import com.express.pizza.pdq.business.entity.Pizza
 
 
 class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizza, Int>) :
@@ -71,7 +71,7 @@ class CartItemAdapter(val context: Context?, private var map: LinkedHashMap<Pizz
             TYPE_FOOTER -> return
             else -> {
                 holder.name.text = keyList[position].p_name
-                holder.size.text = "${keyList[position].p_size} 英寸"
+                holder.size.text = "${keyList[position].p_size}"
                 holder.price.text = "¥" + String.format("%.2f", keyList[position].price)
                 Glide.with(context!!)
                     .load(keyList[position].p_picture)

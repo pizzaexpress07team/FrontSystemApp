@@ -41,5 +41,5 @@
             android:text="¥89.00"
             android:layout_marginBottom="96dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:fontFamily="sans-serif-condensed"/>
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>

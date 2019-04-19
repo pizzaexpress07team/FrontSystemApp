@@ -15,7 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.express.pizza.pdq.R
 import com.express.pizza.pdq.callback.ItemContentClickListener
 import com.express.pizza.pdq.callback.ItemCountClickListener
-import com.express.pizza.pdq.entity.Pizza
+import com.express.pizza.pdq.business.entity.Pizza
 
 
 class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.Adapter<PizzaAdapter.ViewHolder>() {
@@ -65,7 +65,7 @@ class PizzaAdapter(val context: Context?, var list: List<Pizza>) : RecyclerView.
         when (getItemViewType(position)) {
             TYPE_FOOTER -> return
             else -> {
-                holder.name.text = "${list[position].p_name} ${list[position].p_size}'"
+                holder.name.text = "${list[position].p_name} ${list[position].p_size}"
                 holder.kind.text = list[position].p_type
                 holder.price.text = "¥${String.format("%.2f", list[position].price)}"
                 Glide.with(context!!)

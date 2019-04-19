@@ -121,11 +121,6 @@
             <com.google.android.material.tabs.TabItem
                     android:layout_height="32dp"
                     android:layout_width="wrap_content"
-                    android:text="意面"
-            />
-            <com.google.android.material.tabs.TabItem
-                    android:layout_height="32dp"
-                    android:layout_width="wrap_content"
                     android:text="小食"
             />
             <com.google.android.material.tabs.TabItem
